@@ -36,11 +36,15 @@ const Navbar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="https://opensprinkler.com/">
-              OpenSprinkler
+            <a className="nav-link" href="http://textergreen.zapto.org:8080">
+              Pomar
             </a>
           </li>
-          
+          <li className="nav-item">
+            <a className="nav-link" href="http://textergreen.zapto.org:8083">
+              Estufa
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
