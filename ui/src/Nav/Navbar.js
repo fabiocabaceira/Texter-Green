@@ -35,6 +35,12 @@ const Navbar = () => {
               Registar
             </a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" href="https://opensprinkler.com/">
+              OpenSprinkler
+            </a>
+          </li>
+          
         </ul>
       </div>
     </nav>
