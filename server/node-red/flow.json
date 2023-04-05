@@ -1,0 +1,1033 @@
+[
+    {
+        "id": "3c3d598ee3d6a97c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d9d0c82806e17e8e",
+        "type": "mqtt in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Estufinha estado de rega",
+        "topic": "opensprinkler/station/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "d5827538163e2160",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "dead79f50367f757",
+                "ae4981b6a0904731"
+            ]
+        ]
+    },
+    {
+        "id": "aed8041c717e0343",
+        "type": "rocketchat-out",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Notify",
+        "server": "22dba644aa7aea67",
+        "destination": "rooms",
+        "room": "general",
+        "roomType": "str",
+        "avatarText": "",
+        "avatarTextType": "str",
+        "aliasText": "",
+        "aliasTextType": "str",
+        "emojiText": "",
+        "emojiTextType": "str",
+        "messageText": "payload.send",
+        "messageTextType": "msg",
+        "attachments": "[]",
+        "attachmentsType": "json",
+        "x": 950,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "13c3d5517b01ad2b",
+        "type": "mqtt in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "# estufinha",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "d5827538163e2160",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 100,
+        "wires": [
+            [
+                "d3b3607684767dcb"
+            ]
+        ]
+    },
+    {
+        "id": "d3b3607684767dcb",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "debug #estufinha",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "0372922a3c3f0824",
+        "type": "mqtt in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "# pomar",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "a52063e041fa5f04",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 180,
+        "wires": [
+            [
+                "ba40ccdfefda7f98"
+            ]
+        ]
+    },
+    {
+        "id": "ba40ccdfefda7f98",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "debug #pomar",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "91289d4e9af354f4",
+        "type": "mqtt in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Pomar estado de rega",
+        "topic": "opensprinkler/station/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "a52063e041fa5f04",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "99d68a6688f2a6a3",
+                "6c07775cbe40f72f"
+            ]
+        ]
+    },
+    {
+        "id": "dead79f50367f757",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "debug mudanca estufinha",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6c07775cbe40f72f",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "debug mudanca pomar",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a80e679f2075392f",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "function 2",
+        "func": "var topicParts = msg.topic.split('/');\nvar stationNumber = topicParts.pop();\nmsg.payload.stationNumber = stationNumber;\nlet stationName = context.global[msg.location+\"_name_\" + stationNumber];\n\n// 0 OFF\n// 1 ON\nif (msg.payload.state === 0) {\n    msg.payload.send = msg.location+\" :\\nEstação ID: \" + stationNumber + \"\\nEstação Nome: \" + stationName + \"\\nEstado: Esteve ativa por \" + msg.payload.duration + \" segundos.\";\n} else {\n\n    msg.payload.send = msg.location +\" :\\nEstação ID: \" + stationNumber + \"\\nEstação Nome: \" + stationName + \"\\nEstado: Foi ativada.\";\n}\n\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 320,
+        "wires": [
+            [
+                "aed8041c717e0343"
+            ]
+        ]
+    },
+    {
+        "id": "f82ea9c4b347f965",
+        "type": "inject",
+        "z": "3c3d598ee3d6a97c",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "43200",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "8ca8528f9721f2dc",
+                "e9df3149e5856ffd"
+            ]
+        ]
+    },
+    {
+        "id": "8ca8528f9721f2dc",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Names OpenSprinkler Pomar",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.184:8080/jn?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 320,
+        "y": 520,
+        "wires": [
+            [
+                "54fb5fd23317a77f"
+            ]
+        ]
+    },
+    {
+        "id": "e9df3149e5856ffd",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Names OpenSprinkler Estufinha",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.131:8083/jn?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 330,
+        "y": 680,
+        "wires": [
+            [
+                "c186be56791b720d"
+            ]
+        ]
+    },
+    {
+        "id": "853f56259a0ebe43",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Extract Station Names",
+        "func": "let snames = msg.payload.snames;\n\nlet stationNames = [];\n\nfor (let i = 0; i < snames.length; i++) {\n    let varName = msg.location+\"_name_\" + i;\n    let stationName = snames[i];\n    context.global[varName] = stationName;\n    stationNames.push(stationName);\n}\n\nmsg.payload = stationNames;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 600,
+        "wires": [
+            [
+                "c5ad4cc36233f275",
+                "af18eb77f75c7d0e"
+            ]
+        ]
+    },
+    {
+        "id": "c5ad4cc36233f275",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Station Names",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "af18eb77f75c7d0e",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Original Message",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "b9fb3c249635ce51",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "States OpenSprinkler Estufinha",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.131:8083/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 960,
+        "wires": [
+            [
+                "f30b9fea9e64e6e6"
+            ]
+        ]
+    },
+    {
+        "id": "0fce10212c7c0ba3",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "States OpenSprinkler Pomar",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.184:8080/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 820,
+        "wires": [
+            [
+                "6279e5d7f42a1309"
+            ]
+        ]
+    },
+    {
+        "id": "d17811804fb0631e",
+        "type": "rocketchat-in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "We receive a msg",
+        "server": "22dba644aa7aea67",
+        "origin": "user",
+        "room": "general",
+        "roomType": "str",
+        "roomData": "{}",
+        "x": 130,
+        "y": 1220,
+        "wires": [
+            [
+                "d15f465088378fa4",
+                "34651c721a08e6f8"
+            ]
+        ]
+    },
+    {
+        "id": "d15f465088378fa4",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Rocket Chat msg recieved",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 160,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "c9218e29eb1eaa9d",
+        "type": "rocketchat-out",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Send msg.payload.send",
+        "server": "22dba644aa7aea67",
+        "destination": "rooms",
+        "room": "payload.rid",
+        "roomType": "msg",
+        "avatarText": "",
+        "avatarTextType": "str",
+        "aliasText": "",
+        "aliasTextType": "str",
+        "emojiText": "",
+        "emojiTextType": "str",
+        "messageText": "payload.send",
+        "messageTextType": "msg",
+        "attachments": "[]",
+        "attachmentsType": "json",
+        "x": 1330,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "39822f2e6664bd2b",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "function 3",
+        "func": "var regex = /^!rega\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var location = match[1];\n    var keys = Object.keys(context.global);\n    var locationKeys = keys.filter(function (key) {\n        return key.startsWith(location+\"_name_\");\n    });\n\n    var result = locationKeys.map(function (key) {\n        var id = key.split(\"_\")[2];\n        var name = context.global[key];\n        var state = context.global[location + \"_state_\" + id];\n        state = state.map(function (val) {\n            return parseInt(val);\n        });\n        return id +\": \"+name + \" - \" + state[id];\n    }).join(\"\\n\");\n\n    msg.payload.send = \"Localização: \" + location + \"\\nEstações Disponiveis:\\n\" + result + \"\\nUtilizar !rega (zona) (estação) on/off\";\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1240,
+        "wires": [
+            [
+                "c9218e29eb1eaa9d"
+            ]
+        ]
+    },
+    {
+        "id": "34651c721a08e6f8",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "!rega",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 1300,
+        "wires": [
+            [
+                "d23e3629b0362561",
+                "eec10c81d340b746",
+                "a6b53012284ebc2d",
+                "6102a88bcfba1a60"
+            ]
+        ]
+    },
+    {
+        "id": "6c1950c83ef1d1aa",
+        "type": "comment",
+        "z": "3c3d598ee3d6a97c",
+        "name": "",
+        "info": "!rega - usage manual\n!rega localizaçoes - manda as localizaçoes disponiveis\n!rega pomar - mosta as estaçoes do pomar e estado.\n!rega pomar 1 on/off - liga/desliga a estaçao 1 do pomar\n",
+        "x": 340,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "c8cad4cc308cc7ce",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Extract Station States",
+        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\n\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.location+\"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push(stationState);\n}\n\nmsg.payload = stationStates;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 880,
+        "wires": [
+            [
+                "455e2a95e052af23",
+                "f14f76fd608b8bb3"
+            ]
+        ]
+    },
+    {
+        "id": "455e2a95e052af23",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Station States",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "f14f76fd608b8bb3",
+        "type": "debug",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Original Message",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "f30b9fea9e64e6e6",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - estufinha",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "estufinha",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 960,
+        "wires": [
+            [
+                "c8cad4cc308cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "54fb5fd23317a77f",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - pomar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "pomar",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "853f56259a0ebe43"
+            ]
+        ]
+    },
+    {
+        "id": "c186be56791b720d",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - estufinha",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "estufinha",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 680,
+        "wires": [
+            [
+                "853f56259a0ebe43"
+            ]
+        ]
+    },
+    {
+        "id": "6279e5d7f42a1309",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - pomar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "pomar",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 820,
+        "wires": [
+            [
+                "c8cad4cc308cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "d23e3629b0362561",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega (zona)",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s*(?!(lista\\b|\\b$))(\\S+)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 1240,
+        "wires": [
+            [
+                "5a24db30f519f4ae",
+                "1df137bf3d073790"
+            ]
+        ]
+    },
+    {
+        "id": "a6b53012284ebc2d",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega lista",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "!rega lista",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 1300,
+        "wires": [
+            [
+                "f59054777a79209d"
+            ]
+        ]
+    },
+    {
+        "id": "eec10c81d340b746",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "!rega",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 1360,
+        "wires": [
+            [
+                "6182a7f0d41261e3"
+            ]
+        ]
+    },
+    {
+        "id": "99d68a6688f2a6a3",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - pomar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "pomar",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "a80e679f2075392f"
+            ]
+        ]
+    },
+    {
+        "id": "ae4981b6a0904731",
+        "type": "change",
+        "z": "3c3d598ee3d6a97c",
+        "name": "msg.location - estufinha",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "estufinha",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "a80e679f2075392f"
+            ]
+        ]
+    },
+    {
+        "id": "b86995fb29a135c4",
+        "type": "link in",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Get States",
+        "links": [
+            "5a24db30f519f4ae"
+        ],
+        "x": 95,
+        "y": 880,
+        "wires": [
+            [
+                "0fce10212c7c0ba3",
+                "b9fb3c249635ce51"
+            ]
+        ]
+    },
+    {
+        "id": "5a24db30f519f4ae",
+        "type": "link out",
+        "z": "3c3d598ee3d6a97c",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "b86995fb29a135c4"
+        ],
+        "x": 725,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "0b7ad5aada78afa0",
+        "type": "inject",
+        "z": "3c3d598ee3d6a97c",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 900,
+        "wires": [
+            [
+                "0fce10212c7c0ba3",
+                "b9fb3c249635ce51"
+            ]
+        ]
+    },
+    {
+        "id": "1df137bf3d073790",
+        "type": "delay",
+        "z": "3c3d598ee3d6a97c",
+        "name": "Delay for http request",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 780,
+        "y": 1240,
+        "wires": [
+            [
+                "39822f2e6664bd2b"
+            ]
+        ]
+    },
+    {
+        "id": "f59054777a79209d",
+        "type": "template",
+        "z": "3c3d598ee3d6a97c",
+        "name": "",
+        "field": "payload.send",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Zonas disponiveis:\n- estufinha\n- pomar\nUsar: !rega ZONA para consultar os estados das mesmas.",
+        "output": "str",
+        "x": 780,
+        "y": 1300,
+        "wires": [
+            [
+                "c9218e29eb1eaa9d"
+            ]
+        ]
+    },
+    {
+        "id": "6102a88bcfba1a60",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega (zona) (estação) (on/off)",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 1160,
+        "wires": [
+            [
+                "4fbfe0f88b02a452"
+            ]
+        ]
+    },
+    {
+        "id": "4fbfe0f88b02a452",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "function 4",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$/;\n\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zona +\"\\nEstação: \"+ estacao;\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1160,
+        "wires": [
+            [
+                "c9218e29eb1eaa9d",
+                "cd9f2d2f5fe853d8"
+            ]
+        ]
+    },
+    {
+        "id": "cd9f2d2f5fe853d8",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega (zona) (estacao) off",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1050,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6182a7f0d41261e3",
+        "type": "template",
+        "z": "3c3d598ee3d6a97c",
+        "name": "",
+        "field": "payload.send",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "!rega lista --> Consultar as zonas disponiveis.\n!rega (ZONA) --> Consultar os estados das estações de determinada zona.\n--- Ligar/Desligar Estação ---\n!rega (ZONA) (ESTAÇÃO) on (SEGUNDOS) --> Ligar determinada estação por X segundos.\n!rega (ZONA) (ESTAÇÃO) off --> Ligar determinada estação.",
+        "output": "str",
+        "x": 780,
+        "y": 1360,
+        "wires": [
+            [
+                "c9218e29eb1eaa9d"
+            ]
+        ]
+    },
+    {
+        "id": "d5827538163e2160",
+        "type": "mqtt-broker",
+        "name": "mqtt estufinha",
+        "broker": "192.168.8.5",
+        "port": "2001",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "22dba644aa7aea67",
+        "type": "rocketchat-server",
+        "name": "TexterGreen Rocket Chat",
+        "host": "http://192.168.8.5:3000",
+        "user": "rzmA7FjfrtksMa27D",
+        "token": "SeWh1f38l84ft4CJSm-v5e8HMD48docKqn5h7v0rPdc"
+    },
+    {
+        "id": "a52063e041fa5f04",
+        "type": "mqtt-broker",
+        "name": "mqtt pomar",
+        "broker": "192.168.8.5",
+        "port": "2002",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
