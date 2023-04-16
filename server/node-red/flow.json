@@ -1392,7 +1392,7 @@
         "type": "function",
         "z": "606d71b46615da7c",
         "name": "set payload",
-        "func": "msg.payload = [{age: 22}];\nreturn msg;",
+        "func": "//msg.payload = [{age: 22}];\nmsg.payload = [{}];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1508,6 +1508,90 @@
         "statusType": "auto",
         "x": 1070,
         "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e885a3946c4ce7fd",
+        "type": "http in",
+        "z": "606d71b46615da7c",
+        "name": "Post sensor-data",
+        "url": "/sensor-data",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "0a4f7279f9186349"
+            ]
+        ]
+    },
+    {
+        "id": "0a4f7279f9186349",
+        "type": "function",
+        "z": "606d71b46615da7c",
+        "name": "Json Parse",
+        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Iterate over the keys of the JSON object and save them in msg.payload with keys\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n    json.date = new Date().toISOString();\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 460,
+        "wires": [
+            [
+                "58bf15ef2c1840a0",
+                "bf7324b37778dcc8"
+            ]
+        ]
+    },
+    {
+        "id": "bf7324b37778dcc8",
+        "type": "http response",
+        "z": "606d71b46615da7c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "58bf15ef2c1840a0",
+        "type": "mongodb4",
+        "z": "606d71b46615da7c",
+        "clientNode": "9362c1adaa612ce4",
+        "mode": "collection",
+        "collection": "persons",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "",
+        "handleDocId": false,
+        "name": "",
+        "x": 780,
+        "y": 460,
+        "wires": [
+            [
+                "699a963b2ccd9e21"
+            ]
+        ]
+    },
+    {
+        "id": "699a963b2ccd9e21",
+        "type": "debug",
+        "z": "606d71b46615da7c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 460,
         "wires": []
     },
     {
