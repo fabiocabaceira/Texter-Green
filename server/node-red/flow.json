@@ -442,7 +442,7 @@
         "type": "function",
         "z": "3c3d598ee3d6a97c",
         "name": "function 3",
-        "func": "var regex = /^!rega\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var location = match[1];\n    var keys = Object.keys(context.global);\n    var locationKeys = keys.filter(function (key) {\n        return key.startsWith(location+\"_name_\");\n    });\n\n    var result = locationKeys.map(function (key) {\n        var id = key.split(\"_\")[2];\n        var name = context.global[key];\n        var state = context.global[location + \"_state_\" + id];\n        state = state.map(function (val) {\n            return parseInt(val);\n        });\n        return id +\": \"+name + \" - \" + state[id];\n    }).join(\"\\n\");\n\n    msg.payload.send = \"Localização: \" + location + \"\\nEstações Disponiveis:\\n\" + result + \"\\nUtilizar !rega (zona) (estação) on/off\";\n}\n\nreturn msg;\n",
+        "func": "var regex = /^!rega\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var location = match[1];\n    var keys = Object.keys(context.global);\n    var locationKeys = keys.filter(function (key) {\n        return key.startsWith(location+\"_name_\");\n    });\n\n    var result = locationKeys.map(function (key) {\n        var id = key.split(\"_\")[2];\n        var name = context.global[key];\n        var state = context.global[location + \"_state_\" + id];\n        state = state.map(function (val) {\n            return parseInt(val);\n        });\n        return id +\": \"+name + \" - \" + state[id];\n    }).join(\"\\n\");\n\n    msg.payload.send = \"Localização: \" + location + \"\\nEstações Disponiveis:\\n\" + result + \"\\nUtilizar !rega \"+location+\" (estação) on/off\";\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -480,7 +480,8 @@
                 "d23e3629b0362561",
                 "eec10c81d340b746",
                 "a6b53012284ebc2d",
-                "6102a88bcfba1a60"
+                "6102a88bcfba1a60",
+                "2aeb4d3f8d8d3035"
             ]
         ]
     },
@@ -885,13 +886,13 @@
         "id": "6102a88bcfba1a60",
         "type": "switch",
         "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estação) (on/off)",
+        "name": "!rega (zona) (estação) off",
         "property": "payload.msg",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$",
+                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(off)$",
                 "vt": "str",
                 "case": false
             }
@@ -899,7 +900,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 630,
+        "x": 610,
         "y": 1160,
         "wires": [
             [
@@ -912,7 +913,7 @@
         "type": "function",
         "z": "3c3d598ee3d6a97c",
         "name": "function 4",
-        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$/;\n\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zona +\"\\nEstação: \"+ estacao;\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$/;\n//var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)(?:\\s+(\\d+))?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zona +\"\\nEstação: \"+ estacao;\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -943,8 +944,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1050,
-        "y": 1080,
+        "x": 1090,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -966,6 +967,74 @@
             [
                 "c9218e29eb1eaa9d"
             ]
+        ]
+    },
+    {
+        "id": "2aeb4d3f8d8d3035",
+        "type": "switch",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega (zona) (estação) on (time)",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 1100,
+        "wires": [
+            [
+                "9e0f17946b5414de"
+            ]
+        ]
+    },
+    {
+        "id": "9e0f17946b5414de",
+        "type": "function",
+        "z": "3c3d598ee3d6a97c",
+        "name": "function 5",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    var time = match[4];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zona +\"\\nEstação: \"+ estacao+\"\\nDuração: \"+ time+\" segundos\";\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        msg.timeon = time\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1100,
+        "wires": [
+            [
+                "51f0da9584113648",
+                "c9218e29eb1eaa9d"
+            ]
+        ]
+    },
+    {
+        "id": "51f0da9584113648",
+        "type": "http request",
+        "z": "3c3d598ee3d6a97c",
+        "name": "!rega (zona) (estacao) on (time)",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=1&t={{timeon}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1110,
+        "y": 1100,
+        "wires": [
+            []
         ]
     },
     {
