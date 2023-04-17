@@ -2,7 +2,7 @@
     {
         "id": "3c3d598ee3d6a97c",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Rega",
         "disabled": false,
         "info": "",
         "env": []
@@ -10,7 +10,7 @@
     {
         "id": "606d71b46615da7c",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Sensor Data",
         "disabled": false,
         "info": "",
         "env": []
@@ -1150,7 +1150,7 @@
         "type": "function",
         "z": "3c3d598ee3d6a97c",
         "name": "function 5",
-        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    var time = match[4];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zona +\"\\nEstação: \"+ estacao+\"\\nDuração: \"+ time+\" segundos\";\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        msg.timeon = time\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zona = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    var time = match[4];\n    if (zona == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zona == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona: \" + zona +\"\\nEstação: \"+ estacao+\"\\nDuração: \"+ time+\" segundos\";\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        msg.timeon = time\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zona + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zona\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1412,7 +1412,7 @@
         "z": "606d71b46615da7c",
         "clientNode": "9362c1adaa612ce4",
         "mode": "collection",
-        "collection": "persons",
+        "collection": "this",
         "operation": "find",
         "output": "toArray",
         "maxTimeMS": "",
@@ -1532,7 +1532,7 @@
         "type": "function",
         "z": "606d71b46615da7c",
         "name": "Json Parse",
-        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Iterate over the keys of the JSON object and save them in msg.payload with keys\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n    json.date = new Date().toISOString();\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
+        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Iterate over the keys of the JSON object and save them in msg.payload with keys\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n    json.date = new Date().toISOString();\n    msg.collection = json.collection;\n    delete json.collection;\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1543,7 +1543,8 @@
         "wires": [
             [
                 "58bf15ef2c1840a0",
-                "bf7324b37778dcc8"
+                "bf7324b37778dcc8",
+                "699a963b2ccd9e21"
             ]
         ]
     },
@@ -1564,7 +1565,7 @@
         "z": "606d71b46615da7c",
         "clientNode": "9362c1adaa612ce4",
         "mode": "collection",
-        "collection": "persons",
+        "collection": "",
         "operation": "insertOne",
         "output": "toArray",
         "maxTimeMS": "",
@@ -1592,6 +1593,16 @@
         "statusType": "auto",
         "x": 1090,
         "y": 460,
+        "wires": []
+    },
+    {
+        "id": "dd83f030a7805073",
+        "type": "comment",
+        "z": "606d71b46615da7c",
+        "name": "",
+        "info": "The sensor needs to send the values in json indication the collection\n{\"ph\":7.4,\"value2\": 743,\"collection\":\"this\"}",
+        "x": 280,
+        "y": 400,
         "wires": []
     },
     {
