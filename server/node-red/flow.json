@@ -24,6 +24,14 @@
         "env": []
     },
     {
+        "id": "1b3b19d619ca70e2",
+        "type": "tab",
+        "label": "NeoAPI",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "d5827538163e2160",
         "type": "mqtt-broker",
         "name": "mqtt estufinha",
@@ -496,8 +504,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 310,
-        "y": 1020,
+        "x": 350,
+        "y": 980,
         "wires": [
             [
                 "f30b9fea9e64e6e6"
@@ -520,7 +528,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 300,
+        "x": 340,
         "y": 820,
         "wires": [
             [
@@ -650,14 +658,14 @@
         "type": "function",
         "z": "3c3d598ee3d6a97c",
         "name": "Extract Station States",
-        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\n\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.zone+\"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push(stationState);\n}\n\nmsg.payload = stationStates;\n\nreturn msg;\n",
+        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\nmsg.payload = '';\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.zone+\"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push(stationState);\n}\n\nmsg.payload = stationStates;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 880,
-        "y": 880,
+        "y": 900,
         "wires": [
             [
                 "455e2a95e052af23",
@@ -718,8 +726,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
-        "y": 960,
+        "x": 640,
+        "y": 980,
         "wires": [
             [
                 "c8cad4cc308cc7ce"
@@ -799,7 +807,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 610,
+        "x": 650,
         "y": 820,
         "wires": [
             [
@@ -946,8 +954,8 @@
         "links": [
             "5a24db30f519f4ae"
         ],
-        "x": 95,
-        "y": 880,
+        "x": 85,
+        "y": 900,
         "wires": [
             [
                 "0fce10212c7c0ba3",
@@ -962,7 +970,8 @@
         "name": "link out 1",
         "mode": "link",
         "links": [
-            "b86995fb29a135c4"
+            "b86995fb29a135c4",
+            "ae8dd45fb9cf2d5b"
         ],
         "x": 725,
         "y": 1200,
@@ -1185,197 +1194,6 @@
         "y": 1100,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "7c5c26ae371a301d",
-        "type": "http in",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Post rega-control",
-        "url": "/rega-control",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 100,
-        "y": 1520,
-        "wires": [
-            [
-                "b96ac1526eb1c700"
-            ]
-        ]
-    },
-    {
-        "id": "b96ac1526eb1c700",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Json Parse",
-        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Check if the expected keys are present in the JSON object\n    if (!json.zone || !json.estacao || !json.action) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"Missing required keys in JSON\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n\n    // Add current date to the JSON object\n    json.date = new Date().toISOString();\n\n    // Set json.time to null if json.action is \"off\" and json.time is non-existent\n    if (json.action === \"off\") {\n        json.time = null;\n    }\n    if (json.action !== \"off\" && !json.time) {\n        msg.payload = \"You are outatime\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    msg.payload = json; // Set msg.payload to the updated JSON object\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 1520,
-        "wires": [
-            [
-                "9bcd6f8c1f8e5752",
-                "2981bfb9c40ddd7f",
-                "a3f86c9e7cf49914"
-            ]
-        ]
-    },
-    {
-        "id": "9bcd6f8c1f8e5752",
-        "type": "http response",
-        "z": "3c3d598ee3d6a97c",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 490,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "605f0af301f49be7",
-        "type": "comment",
-        "z": "3c3d598ee3d6a97c",
-        "name": "",
-        "info": "post com um json do estilo:\n{\"zona\":\"pomar\", \"estacao\":1, \"action\": \"off\", \"time\": null}\nadicionar tambem enviar o cookie do client para auth com a db",
-        "x": 100,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "b21325fd77637ac0",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "function 6",
-        "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 1660,
-        "wires": [
-            [
-                "6c0dddeb62e3a6e1"
-            ]
-        ]
-    },
-    {
-        "id": "6c0dddeb62e3a6e1",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estacao) off",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{payload.estacao}}&en=0",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 910,
-        "y": 1660,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "069a4c52dbbc7b99",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "function 7",
-        "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 1600,
-        "wires": [
-            [
-                "3c486cb3c53b1670"
-            ]
-        ]
-    },
-    {
-        "id": "3c486cb3c53b1670",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estacao) on (time)",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{payload.estacao}}&en=1&t={{payload.time}}",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 930,
-        "y": 1600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2981bfb9c40ddd7f",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "action: on",
-        "property": "payload.action",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 480,
-        "y": 1600,
-        "wires": [
-            [
-                "069a4c52dbbc7b99"
-            ]
-        ]
-    },
-    {
-        "id": "a3f86c9e7cf49914",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "action: off",
-        "property": "payload.action",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 480,
-        "y": 1660,
-        "wires": [
-            [
-                "b21325fd77637ac0"
-            ]
         ]
     },
     {
@@ -1643,101 +1461,6 @@
         "statusType": "auto",
         "x": 1070,
         "y": 720,
-        "wires": []
-    },
-    {
-        "id": "e885a3946c4ce7fd",
-        "type": "http in",
-        "z": "606d71b46615da7c",
-        "name": "Post sensor-data",
-        "url": "/sensor-data",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 280,
-        "y": 460,
-        "wires": [
-            [
-                "0a4f7279f9186349"
-            ]
-        ]
-    },
-    {
-        "id": "0a4f7279f9186349",
-        "type": "function",
-        "z": "606d71b46615da7c",
-        "name": "Json Parse",
-        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Iterate over the keys of the JSON object and save them in msg.payload with keys\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n    json.date = new Date().toISOString();\n    msg.collection = json.collection;\n    delete json.collection;\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 510,
-        "y": 460,
-        "wires": [
-            [
-                "58bf15ef2c1840a0",
-                "bf7324b37778dcc8",
-                "699a963b2ccd9e21"
-            ]
-        ]
-    },
-    {
-        "id": "bf7324b37778dcc8",
-        "type": "http response",
-        "z": "606d71b46615da7c",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 670,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "58bf15ef2c1840a0",
-        "type": "mongodb4",
-        "z": "606d71b46615da7c",
-        "clientNode": "9362c1adaa612ce4",
-        "mode": "collection",
-        "collection": "",
-        "operation": "insertOne",
-        "output": "toArray",
-        "maxTimeMS": "",
-        "handleDocId": false,
-        "name": "",
-        "x": 780,
-        "y": 460,
-        "wires": [
-            [
-                "699a963b2ccd9e21"
-            ]
-        ]
-    },
-    {
-        "id": "699a963b2ccd9e21",
-        "type": "debug",
-        "z": "606d71b46615da7c",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1090,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "dd83f030a7805073",
-        "type": "comment",
-        "z": "606d71b46615da7c",
-        "name": "",
-        "info": "The sensor needs to send the values in json indication the collection\n{\"ph\":7.4,\"value2\": 743,\"collection\":\"this\"}",
-        "x": 280,
-        "y": 400,
         "wires": []
     },
     {
@@ -2638,5 +2361,473 @@
         "x": 710,
         "y": 620,
         "wires": []
+    },
+    {
+        "id": "7c5c26ae371a301d",
+        "type": "http in",
+        "z": "1b3b19d619ca70e2",
+        "name": "Post rega-control",
+        "url": "/rega-control",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "b96ac1526eb1c700"
+            ]
+        ]
+    },
+    {
+        "id": "b96ac1526eb1c700",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "Json Parse",
+        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Check if the expected keys are present in the JSON object\n    if (!json.zone || !json.estacao || !json.action) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"Missing required keys in JSON\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n\n    // Add current date to the JSON object\n    json.date = new Date().toISOString();\n\n    // Set json.time to null if json.action is \"off\" and json.time is non-existent\n    if (json.action === \"off\") {\n        json.time = null;\n    }\n    if (json.action !== \"off\" && !json.time) {\n        msg.payload = \"You are outatime\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    msg.payload = json; // Set msg.payload to the updated JSON object\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "9bcd6f8c1f8e5752",
+                "2981bfb9c40ddd7f",
+                "a3f86c9e7cf49914"
+            ]
+        ]
+    },
+    {
+        "id": "9bcd6f8c1f8e5752",
+        "type": "http response",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "605f0af301f49be7",
+        "type": "comment",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "info": "post com um json do estilo:\n{\"zona\":\"pomar\", \"estacao\":1, \"action\": \"off\", \"time\": null}\nadicionar tambem enviar o cookie do client para auth com a db",
+        "x": 120,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b21325fd77637ac0",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "function 6",
+        "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "6c0dddeb62e3a6e1"
+            ]
+        ]
+    },
+    {
+        "id": "6c0dddeb62e3a6e1",
+        "type": "http request",
+        "z": "1b3b19d619ca70e2",
+        "name": "!rega (zona) (estacao) off",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{payload.estacao}}&en=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 930,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "069a4c52dbbc7b99",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "function 7",
+        "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "3c486cb3c53b1670"
+            ]
+        ]
+    },
+    {
+        "id": "3c486cb3c53b1670",
+        "type": "http request",
+        "z": "1b3b19d619ca70e2",
+        "name": "!rega (zona) (estacao) on (time)",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{payload.estacao}}&en=1&t={{payload.time}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 950,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2981bfb9c40ddd7f",
+        "type": "switch",
+        "z": "1b3b19d619ca70e2",
+        "name": "action: on",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "069a4c52dbbc7b99"
+            ]
+        ]
+    },
+    {
+        "id": "a3f86c9e7cf49914",
+        "type": "switch",
+        "z": "1b3b19d619ca70e2",
+        "name": "action: off",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 300,
+        "wires": [
+            [
+                "b21325fd77637ac0"
+            ]
+        ]
+    },
+    {
+        "id": "a7a9f2b1adfc9c02",
+        "type": "http in",
+        "z": "1b3b19d619ca70e2",
+        "name": "Post sensor-data",
+        "url": "/sensor-data",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 500,
+        "wires": [
+            [
+                "fe47cb2d536347cd"
+            ]
+        ]
+    },
+    {
+        "id": "fe47cb2d536347cd",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "Json Parse",
+        "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    try {\n        json = JSON.parse(msg.payload);\n    } catch (error) {\n        msg.error = error;\n        msg.statusCode = 418;\n        return msg;\n    }\n} else {\n    json = msg.payload;\n}\n\ntry {\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n\n    json.date = new Date().toISOString();\n    if (!json.collection) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"Missing collection in JSON\";\n        msg.statusCode = 418; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    msg.collection = json.collection;\n    delete json.collection;\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 500,
+        "wires": [
+            [
+                "aa825195ef7a4e8a",
+                "247ed4527e4e9f2d",
+                "82c41b3301bfc60d"
+            ]
+        ]
+    },
+    {
+        "id": "247ed4527e4e9f2d",
+        "type": "http response",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 570,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "aa825195ef7a4e8a",
+        "type": "mongodb4",
+        "z": "1b3b19d619ca70e2",
+        "clientNode": "9362c1adaa612ce4",
+        "mode": "collection",
+        "collection": "",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "",
+        "handleDocId": false,
+        "name": "",
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "82c41b3301bfc60d"
+            ]
+        ]
+    },
+    {
+        "id": "82c41b3301bfc60d",
+        "type": "debug",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2f515e04a0ed4520",
+        "type": "comment",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "info": "The sensor needs to send the values in json indication the collection\n{\"ph\":7.4,\"value2\": 743,\"collection\":\"this\"}",
+        "x": 140,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c746442c65f6a2c5",
+        "type": "http in",
+        "z": "1b3b19d619ca70e2",
+        "name": "GET rega-state",
+        "url": "/rega-state/:zone",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 820,
+        "wires": [
+            [
+                "e5ec5fd5.c5a36"
+            ]
+        ]
+    },
+    {
+        "id": "5a233e314554a7d3",
+        "type": "http response",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1010,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5e8bd63af582682e",
+        "type": "http request",
+        "z": "1b3b19d619ca70e2",
+        "name": "States OpenSprinkler Estufinha",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.131:8083/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 630,
+        "y": 900,
+        "wires": [
+            [
+                "7d924b771197759c"
+            ]
+        ]
+    },
+    {
+        "id": "8877cd12c355565f",
+        "type": "http request",
+        "z": "1b3b19d619ca70e2",
+        "name": "States OpenSprinkler Pomar",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.184:8080/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 640,
+        "y": 740,
+        "wires": [
+            [
+                "7d924b771197759c"
+            ]
+        ]
+    },
+    {
+        "id": "7d924b771197759c",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "return json",
+        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.zone + \"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push({ name: varName, state: stationState });\n}\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\nmsg.payload = JSON.stringify(stationStates);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 800,
+        "wires": [
+            [
+                "8c20a15aeec9d8f6",
+                "5a233e314554a7d3"
+            ]
+        ]
+    },
+    {
+        "id": "7a3a2e74a58c6ca8",
+        "type": "switch",
+        "z": "1b3b19d619ca70e2",
+        "name": "msg.zone = pomar",
+        "property": "zone",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "pomar",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 740,
+        "wires": [
+            [
+                "8877cd12c355565f"
+            ]
+        ]
+    },
+    {
+        "id": "8717864bd22cc901",
+        "type": "switch",
+        "z": "1b3b19d619ca70e2",
+        "name": "msg.zone = estufinha",
+        "property": "zone",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "estufinha",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 900,
+        "wires": [
+            [
+                "5e8bd63af582682e"
+            ]
+        ]
+    },
+    {
+        "id": "8c20a15aeec9d8f6",
+        "type": "debug",
+        "z": "1b3b19d619ca70e2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "e5ec5fd5.c5a36",
+        "type": "function",
+        "z": "1b3b19d619ca70e2",
+        "name": "",
+        "func": "let zone = msg.req.params.zone;\nmsg.zone = zone;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 820,
+        "wires": [
+            [
+                "7a3a2e74a58c6ca8",
+                "8717864bd22cc901"
+            ]
+        ]
     }
 ]
