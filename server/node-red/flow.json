@@ -1,6 +1,6 @@
 [
     {
-        "id": "3c3d598ee3d6a97c",
+        "id": "e4986bf4e8db6f4f",
         "type": "tab",
         "label": "Rega",
         "disabled": false,
@@ -8,7 +8,7 @@
         "env": []
     },
     {
-        "id": "606d71b46615da7c",
+        "id": "1c65a5681f749b4b",
         "type": "tab",
         "label": "Sensor Data",
         "disabled": false,
@@ -16,7 +16,7 @@
         "env": []
     },
     {
-        "id": "6b7a48cdf37ecce9",
+        "id": "3147ab54d30d11bb",
         "type": "tab",
         "label": "Example mongodb4",
         "disabled": false,
@@ -24,7 +24,15 @@
         "env": []
     },
     {
-        "id": "1b3b19d619ca70e2",
+        "id": "f7f9c56481cb8ead",
+        "type": "tab",
+        "label": "Rocket.Chat",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "33d8cc1cde209e15",
         "type": "tab",
         "label": "NeoAPI",
         "disabled": false,
@@ -166,9 +174,40 @@
         "uriTabActive": "tab-uri-simple"
     },
     {
-        "id": "d9d0c82806e17e8e",
+        "id": "d489d63adf6c1ab5",
+        "type": "ssh-conf",
+        "ssh": "",
+        "name": "debian",
+        "userlabel": "debian"
+    },
+    {
+        "id": "58099b05a48c465b",
+        "type": "mongodb4-client",
+        "name": "DataDB - logs",
+        "protocol": "mongodb",
+        "hostname": "192.168.8.5",
+        "port": "27017",
+        "dbName": "logs",
+        "appName": "",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    },
+    {
+        "id": "8a8b31c33402fda6",
         "type": "mqtt in",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Estufinha estado de rega",
         "topic": "opensprinkler/station/#",
         "qos": "2",
@@ -182,15 +221,15 @@
         "y": 260,
         "wires": [
             [
-                "dead79f50367f757",
-                "ae4981b6a0904731"
+                "e5787f0feb039a39",
+                "048419d1290f8af8"
             ]
         ]
     },
     {
-        "id": "aed8041c717e0343",
+        "id": "bca56985bda0039a",
         "type": "rocketchat-out",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Notify",
         "server": "22dba644aa7aea67",
         "destination": "rooms",
@@ -211,9 +250,9 @@
         "wires": []
     },
     {
-        "id": "13c3d5517b01ad2b",
+        "id": "1a5468ce0e3281f3",
         "type": "mqtt in",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "# estufinha",
         "topic": "#",
         "qos": "2",
@@ -227,14 +266,14 @@
         "y": 100,
         "wires": [
             [
-                "d3b3607684767dcb"
+                "f33e0e93bb32995b"
             ]
         ]
     },
     {
-        "id": "d3b3607684767dcb",
+        "id": "f33e0e93bb32995b",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "debug #estufinha",
         "active": true,
         "tosidebar": true,
@@ -249,9 +288,9 @@
         "wires": []
     },
     {
-        "id": "0372922a3c3f0824",
+        "id": "9043c1f4f413f0ee",
         "type": "mqtt in",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "# pomar",
         "topic": "#",
         "qos": "2",
@@ -265,14 +304,14 @@
         "y": 180,
         "wires": [
             [
-                "ba40ccdfefda7f98"
+                "2e60dd9943d277dc"
             ]
         ]
     },
     {
-        "id": "ba40ccdfefda7f98",
+        "id": "2e60dd9943d277dc",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "debug #pomar",
         "active": true,
         "tosidebar": true,
@@ -287,9 +326,9 @@
         "wires": []
     },
     {
-        "id": "91289d4e9af354f4",
+        "id": "86561de3bf20f467",
         "type": "mqtt in",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Pomar estado de rega",
         "topic": "opensprinkler/station/#",
         "qos": "2",
@@ -303,15 +342,15 @@
         "y": 360,
         "wires": [
             [
-                "99d68a6688f2a6a3",
-                "6c07775cbe40f72f"
+                "826bdabff1fd8fe5",
+                "205437abe33211af"
             ]
         ]
     },
     {
-        "id": "dead79f50367f757",
+        "id": "e5787f0feb039a39",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "debug mudanca estufinha",
         "active": true,
         "tosidebar": true,
@@ -326,9 +365,9 @@
         "wires": []
     },
     {
-        "id": "6c07775cbe40f72f",
+        "id": "205437abe33211af",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "debug mudanca pomar",
         "active": true,
         "tosidebar": true,
@@ -343,9 +382,9 @@
         "wires": []
     },
     {
-        "id": "a80e679f2075392f",
+        "id": "2ec3b4e11c71d1dd",
         "type": "function",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "function 2",
         "func": "var topicParts = msg.topic.split('/');\nvar stationNumber = topicParts.pop();\nmsg.payload.stationNumber = stationNumber;\nlet stationName = context.global[msg.zone+\"_name_\" + stationNumber];\n\n// 0 OFF\n// 1 ON\nif (msg.payload.state === 0) {\n    msg.payload.send = msg.zone+\" :\\nEstação ID: \" + stationNumber + \"\\nEstação Nome: \" + stationName + \"\\nEstado: Esteve ativa por \" + msg.payload.duration + \" segundos.\";\n} else {\n\n    msg.payload.send = msg.zone +\" :\\nEstação ID: \" + stationNumber + \"\\nEstação Nome: \" + stationName + \"\\nEstado: Foi ativada.\";\n}\n\n\nreturn msg;\n\n",
         "outputs": 1,
@@ -357,14 +396,14 @@
         "y": 320,
         "wires": [
             [
-                "aed8041c717e0343"
+                "bca56985bda0039a"
             ]
         ]
     },
     {
-        "id": "f82ea9c4b347f965",
+        "id": "6d4caeb2995d30b0",
         "type": "inject",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "",
         "props": [
             {
@@ -381,15 +420,15 @@
         "y": 600,
         "wires": [
             [
-                "8ca8528f9721f2dc",
-                "e9df3149e5856ffd"
+                "573b4f63cccb3ae3",
+                "ee3fadc865016954"
             ]
         ]
     },
     {
-        "id": "8ca8528f9721f2dc",
+        "id": "573b4f63cccb3ae3",
         "type": "http request",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Names OpenSprinkler Pomar",
         "method": "GET",
         "ret": "obj",
@@ -406,14 +445,14 @@
         "y": 520,
         "wires": [
             [
-                "54fb5fd23317a77f"
+                "24d854cde4f0955d"
             ]
         ]
     },
     {
-        "id": "e9df3149e5856ffd",
+        "id": "ee3fadc865016954",
         "type": "http request",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Names OpenSprinkler Estufinha",
         "method": "GET",
         "ret": "obj",
@@ -430,16 +469,16 @@
         "y": 680,
         "wires": [
             [
-                "c186be56791b720d"
+                "2fd4a6e8e915dc20"
             ]
         ]
     },
     {
-        "id": "853f56259a0ebe43",
+        "id": "6b8885b2fcf3efb5",
         "type": "function",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Extract Station Names",
-        "func": "let snames = msg.payload.snames;\n\nlet stationNames = [];\n\nfor (let i = 0; i < snames.length; i++) {\n    let varName = msg.location+\"_name_\" + i;\n    let stationName = snames[i];\n    context.global[varName] = stationName;\n    stationNames.push(stationName);\n}\n\nmsg.payload = stationNames;\n\nreturn msg;",
+        "func": "let snames = msg.payload.snames;\n\nlet stationNames = [];\n\nfor (let i = 0; i < snames.length; i++) {\n    let varName = msg.location + \"_name_\" + i;\n    let stationName = snames[i];\n    context.global[varName] = stationName;\n    stationNames.push(stationName);\n}\n\nmsg.payload = stationNames;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -449,17 +488,17 @@
         "y": 600,
         "wires": [
             [
-                "c5ad4cc36233f275",
-                "af18eb77f75c7d0e"
+                "a14f7b727686dd07",
+                "3e12a1f6d93151b1"
             ]
         ]
     },
     {
-        "id": "c5ad4cc36233f275",
+        "id": "a14f7b727686dd07",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Station Names",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -472,11 +511,11 @@
         "wires": []
     },
     {
-        "id": "af18eb77f75c7d0e",
+        "id": "3e12a1f6d93151b1",
         "type": "debug",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Original Message",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -489,255 +528,9 @@
         "wires": []
     },
     {
-        "id": "b9fb3c249635ce51",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "States OpenSprinkler Estufinha",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://192.168.8.131:8083/js?pw=e4a89868b069802aa0cf67419f7dad38",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 350,
-        "y": 980,
-        "wires": [
-            [
-                "f30b9fea9e64e6e6"
-            ]
-        ]
-    },
-    {
-        "id": "0fce10212c7c0ba3",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "States OpenSprinkler Pomar",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://192.168.8.184:8080/js?pw=e4a89868b069802aa0cf67419f7dad38",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 340,
-        "y": 820,
-        "wires": [
-            [
-                "6279e5d7f42a1309"
-            ]
-        ]
-    },
-    {
-        "id": "d17811804fb0631e",
-        "type": "rocketchat-in",
-        "z": "3c3d598ee3d6a97c",
-        "name": "We receive a msg",
-        "server": "22dba644aa7aea67",
-        "origin": "user",
-        "room": "general",
-        "roomType": "str",
-        "roomData": "{}",
-        "x": 130,
-        "y": 1220,
-        "wires": [
-            [
-                "d15f465088378fa4",
-                "34651c721a08e6f8"
-            ]
-        ]
-    },
-    {
-        "id": "d15f465088378fa4",
-        "type": "debug",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Rocket Chat msg recieved",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 160,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "c9218e29eb1eaa9d",
-        "type": "rocketchat-out",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Send msg.payload.send",
-        "server": "22dba644aa7aea67",
-        "destination": "rooms",
-        "room": "payload.rid",
-        "roomType": "msg",
-        "avatarText": "",
-        "avatarTextType": "str",
-        "aliasText": "",
-        "aliasTextType": "str",
-        "emojiText": "",
-        "emojiTextType": "str",
-        "messageText": "payload.send",
-        "messageTextType": "msg",
-        "attachments": "[]",
-        "attachmentsType": "json",
-        "x": 1330,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "39822f2e6664bd2b",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "function 3",
-        "func": "var regex = /^!rega\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var keys = Object.keys(context.global);\n    var locationKeys = keys.filter(function (key) {\n        return key.startsWith(zone+\"_name_\");\n    });\n\n    var result = locationKeys.map(function (key) {\n        var id = key.split(\"_\")[2];\n        var name = context.global[key];\n        var state = context.global[zone + \"_state_\" + id];\n        state = state.map(function (val) {\n            return parseInt(val);\n        });\n        return id +\": \"+name + \" - \" + state[id];\n    }).join(\"\\n\");\n\n    msg.payload.send = \"Localização: \" + zone + \"\\nEstações Disponiveis:\\n\" + result + \"\\nUtilizar !rega \"+zone+\" (estação) on/off\";\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 980,
-        "y": 1240,
-        "wires": [
-            [
-                "c9218e29eb1eaa9d"
-            ]
-        ]
-    },
-    {
-        "id": "34651c721a08e6f8",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "!rega",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 330,
-        "y": 1300,
-        "wires": [
-            [
-                "d23e3629b0362561",
-                "eec10c81d340b746",
-                "a6b53012284ebc2d",
-                "6102a88bcfba1a60",
-                "2aeb4d3f8d8d3035"
-            ]
-        ]
-    },
-    {
-        "id": "6c1950c83ef1d1aa",
-        "type": "comment",
-        "z": "3c3d598ee3d6a97c",
-        "name": "",
-        "info": "!rega - usage manual\n!rega localizaçoes - manda as localizaçoes disponiveis\n!rega pomar - mosta as estaçoes do pomar e estado.\n!rega pomar 1 on/off - liga/desliga a estaçao 1 do pomar\n",
-        "x": 340,
-        "y": 1360,
-        "wires": []
-    },
-    {
-        "id": "c8cad4cc308cc7ce",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Extract Station States",
-        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\nmsg.payload = '';\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.zone+\"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push(stationState);\n}\n\nmsg.payload = stationStates;\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 880,
-        "y": 900,
-        "wires": [
-            [
-                "455e2a95e052af23",
-                "f14f76fd608b8bb3"
-            ]
-        ]
-    },
-    {
-        "id": "455e2a95e052af23",
-        "type": "debug",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Station States",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1140,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "f14f76fd608b8bb3",
-        "type": "debug",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Original Message",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1150,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "f30b9fea9e64e6e6",
+        "id": "24d854cde4f0955d",
         "type": "change",
-        "z": "3c3d598ee3d6a97c",
-        "name": "msg.zone - estufinha",
-        "rules": [
-            {
-                "t": "set",
-                "p": "zone",
-                "pt": "msg",
-                "to": "estufinha",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 980,
-        "wires": [
-            [
-                "c8cad4cc308cc7ce"
-            ]
-        ]
-    },
-    {
-        "id": "54fb5fd23317a77f",
-        "type": "change",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "msg.zone - pomar",
         "rules": [
             {
@@ -757,14 +550,14 @@
         "y": 520,
         "wires": [
             [
-                "853f56259a0ebe43"
+                "6b8885b2fcf3efb5"
             ]
         ]
     },
     {
-        "id": "c186be56791b720d",
+        "id": "2fd4a6e8e915dc20",
         "type": "change",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "msg.zone - estufinha",
         "rules": [
             {
@@ -784,118 +577,14 @@
         "y": 680,
         "wires": [
             [
-                "853f56259a0ebe43"
+                "6b8885b2fcf3efb5"
             ]
         ]
     },
     {
-        "id": "6279e5d7f42a1309",
+        "id": "826bdabff1fd8fe5",
         "type": "change",
-        "z": "3c3d598ee3d6a97c",
-        "name": "msg.zone - pomar",
-        "rules": [
-            {
-                "t": "set",
-                "p": "zone",
-                "pt": "msg",
-                "to": "pomar",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 650,
-        "y": 820,
-        "wires": [
-            [
-                "c8cad4cc308cc7ce"
-            ]
-        ]
-    },
-    {
-        "id": "d23e3629b0362561",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona)",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "regex",
-                "v": "^!rega\\s*(?!(lista\\b|\\b$))(\\S+)$",
-                "vt": "str",
-                "case": false
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 1240,
-        "wires": [
-            [
-                "5a24db30f519f4ae",
-                "1df137bf3d073790"
-            ]
-        ]
-    },
-    {
-        "id": "a6b53012284ebc2d",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega lista",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "!rega lista",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 560,
-        "y": 1300,
-        "wires": [
-            [
-                "f59054777a79209d"
-            ]
-        ]
-    },
-    {
-        "id": "eec10c81d340b746",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "!rega",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 550,
-        "y": 1360,
-        "wires": [
-            [
-                "6182a7f0d41261e3"
-            ]
-        ]
-    },
-    {
-        "id": "99d68a6688f2a6a3",
-        "type": "change",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "msg.zone - pomar",
         "rules": [
             {
@@ -915,14 +604,14 @@
         "y": 400,
         "wires": [
             [
-                "a80e679f2075392f"
+                "2ec3b4e11c71d1dd"
             ]
         ]
     },
     {
-        "id": "ae4981b6a0904731",
+        "id": "048419d1290f8af8",
         "type": "change",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "msg.zone - estufinha",
         "rules": [
             {
@@ -942,45 +631,188 @@
         "y": 300,
         "wires": [
             [
-                "a80e679f2075392f"
+                "2ec3b4e11c71d1dd"
             ]
         ]
     },
     {
-        "id": "b86995fb29a135c4",
+        "id": "f807f2578cc2c979",
         "type": "link in",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "Get States",
         "links": [
-            "5a24db30f519f4ae"
+            "911787148623a2be",
+            "a5ca368e191c489f"
         ],
-        "x": 85,
-        "y": 900,
+        "x": 145,
+        "y": 880,
         "wires": [
             [
-                "0fce10212c7c0ba3",
-                "b9fb3c249635ce51"
+                "719fc0506d03c046",
+                "9938d0d1fe178fe1"
             ]
         ]
     },
     {
-        "id": "5a24db30f519f4ae",
-        "type": "link out",
-        "z": "3c3d598ee3d6a97c",
-        "name": "link out 1",
-        "mode": "link",
-        "links": [
-            "b86995fb29a135c4",
-            "ae8dd45fb9cf2d5b"
-        ],
-        "x": 725,
-        "y": 1200,
+        "id": "719fc0506d03c046",
+        "type": "http request",
+        "z": "e4986bf4e8db6f4f",
+        "name": "States OpenSprinkler Estufinha",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.131:8083/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 360,
+        "y": 960,
+        "wires": [
+            [
+                "e5330c0a2e67e90b"
+            ]
+        ]
+    },
+    {
+        "id": "9938d0d1fe178fe1",
+        "type": "http request",
+        "z": "e4986bf4e8db6f4f",
+        "name": "States OpenSprinkler Pomar",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.8.184:8080/js?pw=e4a89868b069802aa0cf67419f7dad38",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 350,
+        "y": 820,
+        "wires": [
+            [
+                "18e6b34e223bd2ae"
+            ]
+        ]
+    },
+    {
+        "id": "d5147e7c2f9c4790",
+        "type": "function",
+        "z": "e4986bf4e8db6f4f",
+        "name": "Extract Station States",
+        "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\n\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.location+\"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push(stationState);\n}\n\nmsg.payload = stationStates;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 880,
+        "wires": [
+            [
+                "1e5f51382b3b82eb",
+                "1925ed4c48f17a23"
+            ]
+        ]
+    },
+    {
+        "id": "1e5f51382b3b82eb",
+        "type": "debug",
+        "z": "e4986bf4e8db6f4f",
+        "name": "Station States",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 820,
         "wires": []
     },
     {
-        "id": "0b7ad5aada78afa0",
+        "id": "1925ed4c48f17a23",
+        "type": "debug",
+        "z": "e4986bf4e8db6f4f",
+        "name": "Original Message",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e5330c0a2e67e90b",
+        "type": "change",
+        "z": "e4986bf4e8db6f4f",
+        "name": "msg.location - estufinha",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "estufinha",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 960,
+        "wires": [
+            [
+                "d5147e7c2f9c4790"
+            ]
+        ]
+    },
+    {
+        "id": "18e6b34e223bd2ae",
+        "type": "change",
+        "z": "e4986bf4e8db6f4f",
+        "name": "msg.location - pomar",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "msg",
+                "to": "pomar",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 820,
+        "wires": [
+            [
+                "d5147e7c2f9c4790"
+            ]
+        ]
+    },
+    {
+        "id": "9a2f8ea6656814da",
         "type": "inject",
-        "z": "3c3d598ee3d6a97c",
+        "z": "e4986bf4e8db6f4f",
         "name": "",
         "props": [],
         "repeat": "",
@@ -988,218 +820,19 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 250,
+        "x": 300,
         "y": 900,
         "wires": [
             [
-                "0fce10212c7c0ba3",
-                "b9fb3c249635ce51"
+                "719fc0506d03c046",
+                "9938d0d1fe178fe1"
             ]
         ]
     },
     {
-        "id": "1df137bf3d073790",
-        "type": "delay",
-        "z": "3c3d598ee3d6a97c",
-        "name": "Delay for http request",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 780,
-        "y": 1240,
-        "wires": [
-            [
-                "39822f2e6664bd2b"
-            ]
-        ]
-    },
-    {
-        "id": "f59054777a79209d",
-        "type": "template",
-        "z": "3c3d598ee3d6a97c",
-        "name": "",
-        "field": "payload.send",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "Zonas disponiveis:\n- estufinha\n- pomar\nUsar: !rega ZONA para consultar os estados das mesmas.",
-        "output": "str",
-        "x": 780,
-        "y": 1300,
-        "wires": [
-            [
-                "c9218e29eb1eaa9d"
-            ]
-        ]
-    },
-    {
-        "id": "6102a88bcfba1a60",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estação) off",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "regex",
-                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(off)$",
-                "vt": "str",
-                "case": false
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 610,
-        "y": 1160,
-        "wires": [
-            [
-                "4fbfe0f88b02a452"
-            ]
-        ]
-    },
-    {
-        "id": "4fbfe0f88b02a452",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "function 4",
-        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$/;\n//var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)(?:\\s+(\\d+))?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    if (zone == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zone == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zone: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zone +\"\\nEstação: \"+ estacao;\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zone + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 1160,
-        "wires": [
-            [
-                "c9218e29eb1eaa9d",
-                "cd9f2d2f5fe853d8"
-            ]
-        ]
-    },
-    {
-        "id": "cd9f2d2f5fe853d8",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estacao) off",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=0",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 1090,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6182a7f0d41261e3",
-        "type": "template",
-        "z": "3c3d598ee3d6a97c",
-        "name": "",
-        "field": "payload.send",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "!rega lista --> Consultar as zonas disponiveis.\n!rega (ZONA) --> Consultar os estados das estações de determinada zona.\n--- Ligar/Desligar Estação ---\n!rega (ZONA) (ESTAÇÃO) on (SEGUNDOS) --> Ligar determinada estação por X segundos.\n!rega (ZONA) (ESTAÇÃO) off --> Ligar determinada estação.",
-        "output": "str",
-        "x": 780,
-        "y": 1360,
-        "wires": [
-            [
-                "c9218e29eb1eaa9d"
-            ]
-        ]
-    },
-    {
-        "id": "2aeb4d3f8d8d3035",
-        "type": "switch",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estação) on (time)",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "regex",
-                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$",
-                "vt": "str",
-                "case": false
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 630,
-        "y": 1100,
-        "wires": [
-            [
-                "9e0f17946b5414de"
-            ]
-        ]
-    },
-    {
-        "id": "9e0f17946b5414de",
-        "type": "function",
-        "z": "3c3d598ee3d6a97c",
-        "name": "function 5",
-        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    var time = match[4];\n    if (zone == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zone == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona: \" + zone +\"\\nEstação: \"+ estacao+\"\\nDuração: \"+ time+\" segundos\";\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        msg.timeon = time\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zone + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 1100,
-        "wires": [
-            [
-                "51f0da9584113648",
-                "c9218e29eb1eaa9d"
-            ]
-        ]
-    },
-    {
-        "id": "51f0da9584113648",
-        "type": "http request",
-        "z": "3c3d598ee3d6a97c",
-        "name": "!rega (zona) (estacao) on (time)",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=1&t={{timeon}}",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 1110,
-        "y": 1100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "14c1f2c0342bbd68",
+        "id": "adcc4d0cf7f8abf2",
         "type": "inject",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "",
         "props": [
             {
@@ -1221,14 +854,14 @@
         "y": 580,
         "wires": [
             [
-                "684c5f14a873bcdb"
+                "8996a6d56602333e"
             ]
         ]
     },
     {
-        "id": "684c5f14a873bcdb",
+        "id": "8996a6d56602333e",
         "type": "mongodb4",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "clientNode": "9362c1adaa612ce4",
         "mode": "db",
         "collection": "",
@@ -1241,14 +874,14 @@
         "y": 580,
         "wires": [
             [
-                "c5bdce29dc3cce9b"
+                "306588a878ef000b"
             ]
         ]
     },
     {
-        "id": "914ac6f94c131954",
+        "id": "a90e31bf1ac10d3c",
         "type": "inject",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "",
         "props": [
             {
@@ -1269,14 +902,14 @@
         "y": 680,
         "wires": [
             [
-                "788d7b2bcc7c52b9"
+                "dc02ea872af45e8c"
             ]
         ]
     },
     {
-        "id": "788d7b2bcc7c52b9",
+        "id": "dc02ea872af45e8c",
         "type": "function",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "set payload",
         "func": "msg.payload = [{name: 'marina', age: 22}];\nreturn msg;",
         "outputs": 1,
@@ -1288,14 +921,14 @@
         "y": 680,
         "wires": [
             [
-                "cabcb01e59353f3b"
+                "e5ee99ac2fc97a94"
             ]
         ]
     },
     {
-        "id": "cabcb01e59353f3b",
+        "id": "e5ee99ac2fc97a94",
         "type": "mongodb4",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "clientNode": "9362c1adaa612ce4",
         "mode": "collection",
         "collection": "persons",
@@ -1308,14 +941,14 @@
         "y": 680,
         "wires": [
             [
-                "c5bdce29dc3cce9b"
+                "306588a878ef000b"
             ]
         ]
     },
     {
-        "id": "289a37127f4dbe51",
+        "id": "cc5c06441f72552f",
         "type": "inject",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "",
         "props": [
             {
@@ -1336,14 +969,14 @@
         "y": 780,
         "wires": [
             [
-                "a2041abdfc8250cf"
+                "b7c5b84c0b733252"
             ]
         ]
     },
     {
-        "id": "a2041abdfc8250cf",
+        "id": "b7c5b84c0b733252",
         "type": "function",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "set payload",
         "func": "//msg.payload = [{age: 22}];\nmsg.payload = [{}];\nreturn msg;",
         "outputs": 1,
@@ -1355,14 +988,14 @@
         "y": 780,
         "wires": [
             [
-                "c642db3eb145f008"
+                "1e98c88db128225a"
             ]
         ]
     },
     {
-        "id": "c642db3eb145f008",
+        "id": "1e98c88db128225a",
         "type": "mongodb4",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "clientNode": "9362c1adaa612ce4",
         "mode": "collection",
         "collection": "this",
@@ -1375,14 +1008,14 @@
         "y": 780,
         "wires": [
             [
-                "c5bdce29dc3cce9b"
+                "306588a878ef000b"
             ]
         ]
     },
     {
-        "id": "28d4e342093f9a27",
+        "id": "c9c1714b38833fd6",
         "type": "inject",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "",
         "props": [
             {
@@ -1404,14 +1037,14 @@
         "y": 880,
         "wires": [
             [
-                "893895de059138f2"
+                "6fc7c156e3a3ced0"
             ]
         ]
     },
     {
-        "id": "042d00a567e94bf3",
+        "id": "ec7f650afc965342",
         "type": "mongodb4",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "clientNode": "9362c1adaa612ce4",
         "mode": "db",
         "collection": "",
@@ -1424,14 +1057,14 @@
         "y": 880,
         "wires": [
             [
-                "c5bdce29dc3cce9b"
+                "306588a878ef000b"
             ]
         ]
     },
     {
-        "id": "893895de059138f2",
+        "id": "6fc7c156e3a3ced0",
         "type": "function",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "Drop mongodb databse",
         "func": "msg.payload = {\n    action: 'dropDatabase'\n};\nreturn msg;",
         "outputs": 1,
@@ -1443,14 +1076,14 @@
         "y": 880,
         "wires": [
             [
-                "042d00a567e94bf3"
+                "ec7f650afc965342"
             ]
         ]
     },
     {
-        "id": "c5bdce29dc3cce9b",
+        "id": "306588a878ef000b",
         "type": "debug",
-        "z": "606d71b46615da7c",
+        "z": "1c65a5681f749b4b",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1464,9 +1097,9 @@
         "wires": []
     },
     {
-        "id": "fe36b4aab8e4b51e",
+        "id": "8ee666fb6b0e3b59",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1487,14 +1120,14 @@
         "y": 80,
         "wires": [
             [
-                "02df4cd3db727bea"
+                "3e4d84b1b91d4999"
             ]
         ]
     },
     {
-        "id": "02df4cd3db727bea",
+        "id": "3e4d84b1b91d4999",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{name: 'marina', age: 22}];\nreturn msg;",
         "outputs": 1,
@@ -1506,14 +1139,14 @@
         "y": 80,
         "wires": [
             [
-                "fbdbc88728b6bb53"
+                "32e9e09ded597a0a"
             ]
         ]
     },
     {
-        "id": "fbdbc88728b6bb53",
+        "id": "32e9e09ded597a0a",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -1526,14 +1159,14 @@
         "y": 80,
         "wires": [
             [
-                "ad6bea22c0e0b689"
+                "7a3d8fcbc73e33dc"
             ]
         ]
     },
     {
-        "id": "ad6bea22c0e0b689",
+        "id": "7a3d8fcbc73e33dc",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1547,9 +1180,9 @@
         "wires": []
     },
     {
-        "id": "8ee269b8753b02a1",
+        "id": "9f1ef279ba90ee33",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1570,14 +1203,14 @@
         "y": 140,
         "wires": [
             [
-                "b3879290c479d05d"
+                "5dc5c04afa3435f4"
             ]
         ]
     },
     {
-        "id": "b3879290c479d05d",
+        "id": "5dc5c04afa3435f4",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [[\n    {name: 'chris', age: 22},\n    {name: 'markus', age: 22}\n]];\nreturn msg;",
         "outputs": 1,
@@ -1589,14 +1222,14 @@
         "y": 140,
         "wires": [
             [
-                "f5c11e1900707b1c"
+                "50ba785b21334dd4"
             ]
         ]
     },
     {
-        "id": "f5c11e1900707b1c",
+        "id": "50ba785b21334dd4",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -1609,14 +1242,14 @@
         "y": 140,
         "wires": [
             [
-                "7a265f43dea48889"
+                "4f70045619556ef2"
             ]
         ]
     },
     {
-        "id": "7a265f43dea48889",
+        "id": "4f70045619556ef2",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1630,9 +1263,9 @@
         "wires": []
     },
     {
-        "id": "5c8f4bef1a115679",
+        "id": "304bbe9953ac3819",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1653,14 +1286,14 @@
         "y": 260,
         "wires": [
             [
-                "df0db7fed54ff2ef"
+                "74036a120afc67e5"
             ]
         ]
     },
     {
-        "id": "df0db7fed54ff2ef",
+        "id": "74036a120afc67e5",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{name: 'marina'}, {fields: {name: 1, age: 1}}];\nreturn msg;",
         "outputs": 1,
@@ -1672,14 +1305,14 @@
         "y": 260,
         "wires": [
             [
-                "fb9612f0dabb7e67"
+                "9ab9fc23318ca045"
             ]
         ]
     },
     {
-        "id": "fb9612f0dabb7e67",
+        "id": "9ab9fc23318ca045",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -1692,14 +1325,14 @@
         "y": 260,
         "wires": [
             [
-                "fc1f0dfb426c9034"
+                "39b3c9d8f81699aa"
             ]
         ]
     },
     {
-        "id": "fc1f0dfb426c9034",
+        "id": "39b3c9d8f81699aa",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1713,9 +1346,9 @@
         "wires": []
     },
     {
-        "id": "5b61665e0f5cc0c5",
+        "id": "889ba64ed746e103",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1736,16 +1369,16 @@
         "y": 320,
         "wires": [
             [
-                "91c84ba4d12fb033"
+                "d1e3b24513b5c335"
             ]
         ]
     },
     {
-        "id": "91c84ba4d12fb033",
+        "id": "d1e3b24513b5c335",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
-        "func": "msg.payload = [{age: 22}];\nreturn msg;",
+        "func": "//msg.payload = [{age: 22}];\nmsg.payload = [{}];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1755,17 +1388,17 @@
         "y": 320,
         "wires": [
             [
-                "daa4aeeeb29120ca"
+                "1ffef73321ca27bf"
             ]
         ]
     },
     {
-        "id": "daa4aeeeb29120ca",
+        "id": "1ffef73321ca27bf",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
-        "clientNode": "bcf62987d490788a",
+        "z": "3147ab54d30d11bb",
+        "clientNode": "58099b05a48c465b",
         "mode": "collection",
-        "collection": "persons",
+        "collection": "sesamo",
         "operation": "find",
         "output": "toArray",
         "maxTimeMS": "",
@@ -1775,14 +1408,14 @@
         "y": 320,
         "wires": [
             [
-                "39ce7da42ba01b32"
+                "cfdd9ef33019cb9b"
             ]
         ]
     },
     {
-        "id": "39ce7da42ba01b32",
+        "id": "cfdd9ef33019cb9b",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1796,9 +1429,9 @@
         "wires": []
     },
     {
-        "id": "1075d26bfd292f92",
+        "id": "74cf75193b229497",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1819,14 +1452,14 @@
         "y": 380,
         "wires": [
             [
-                "f83a21e14acc6837"
+                "87fdb0c2eec7622f"
             ]
         ]
     },
     {
-        "id": "f83a21e14acc6837",
+        "id": "87fdb0c2eec7622f",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{age: 22}];\nreturn msg;",
         "outputs": 1,
@@ -1838,14 +1471,14 @@
         "y": 380,
         "wires": [
             [
-                "0d76106c415ab9bc"
+                "bc43d4566273d222"
             ]
         ]
     },
     {
-        "id": "0d76106c415ab9bc",
+        "id": "bc43d4566273d222",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -1858,14 +1491,14 @@
         "y": 380,
         "wires": [
             [
-                "6c446d0d50cd33eb"
+                "33d1243c9ccfbe52"
             ]
         ]
     },
     {
-        "id": "6c446d0d50cd33eb",
+        "id": "33d1243c9ccfbe52",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1879,9 +1512,9 @@
         "wires": []
     },
     {
-        "id": "e00d5ecdcb458feb",
+        "id": "f1a8bcd90c5ece5d",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1902,14 +1535,14 @@
         "y": 440,
         "wires": [
             [
-                "5a7163e6a172dec5"
+                "34cf5363e8ea21db"
             ]
         ]
     },
     {
-        "id": "5a7163e6a172dec5",
+        "id": "34cf5363e8ea21db",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{age: 22}];\nreturn msg;",
         "outputs": 1,
@@ -1921,14 +1554,14 @@
         "y": 440,
         "wires": [
             [
-                "eeb034c85f0a357e"
+                "aa816e627b33462f"
             ]
         ]
     },
     {
-        "id": "eeb034c85f0a357e",
+        "id": "aa816e627b33462f",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -1941,14 +1574,14 @@
         "y": 440,
         "wires": [
             [
-                "2f288690a68278bd"
+                "2e22ba9314d97df4"
             ]
         ]
     },
     {
-        "id": "2f288690a68278bd",
+        "id": "2e22ba9314d97df4",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1962,9 +1595,9 @@
         "wires": []
     },
     {
-        "id": "d5700bd465e13fa5",
+        "id": "8ec44acf102ab7a5",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -1985,14 +1618,14 @@
         "y": 200,
         "wires": [
             [
-                "2581ad0e69bb4b74"
+                "3d756316a08233a8"
             ]
         ]
     },
     {
-        "id": "2581ad0e69bb4b74",
+        "id": "3d756316a08233a8",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{}, {$inc: {age: 1}, $set: {aged: true}}];\nreturn msg;",
         "outputs": 1,
@@ -2004,14 +1637,14 @@
         "y": 200,
         "wires": [
             [
-                "ec5005a3a476c75b"
+                "911eddf6a24f0156"
             ]
         ]
     },
     {
-        "id": "ec5005a3a476c75b",
+        "id": "911eddf6a24f0156",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -2024,14 +1657,14 @@
         "y": 200,
         "wires": [
             [
-                "513e182443df307e"
+                "d6f94cf728aa5c32"
             ]
         ]
     },
     {
-        "id": "513e182443df307e",
+        "id": "d6f94cf728aa5c32",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -2045,9 +1678,9 @@
         "wires": []
     },
     {
-        "id": "1dac7a6a0bc94b9b",
+        "id": "11da555d54b2aab8",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -2069,14 +1702,14 @@
         "y": 500,
         "wires": [
             [
-                "3fca5aea8063c42f"
+                "2eb159796c018da5"
             ]
         ]
     },
     {
-        "id": "3fca5aea8063c42f",
+        "id": "2eb159796c018da5",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "with doc _id",
         "func": "// query a document id with string, \n// the operation node will handle this\nmsg.payload = [{_id: \"6333409294471deda67da815\"}];\n\n// operation node will substitute, if valid id string\n// msg.payload = [{_id: ObjectId(\"6333409294471deda67da815\")}]\n\n// THIS EXAMPLE WILL ONLY WORK IF YOU HAVE A DOCUMENT WITH THIS ID IN YOUR DATA SET :-)\n\nreturn msg;",
         "outputs": 1,
@@ -2088,14 +1721,14 @@
         "y": 500,
         "wires": [
             [
-                "0179da6221e5f29c"
+                "ed96a6ae0e0f1a3c"
             ]
         ]
     },
     {
-        "id": "0179da6221e5f29c",
+        "id": "ed96a6ae0e0f1a3c",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -2108,14 +1741,14 @@
         "y": 500,
         "wires": [
             [
-                "1cc86e86236b50da"
+                "3b79f36ba1211593"
             ]
         ]
     },
     {
-        "id": "1cc86e86236b50da",
+        "id": "3b79f36ba1211593",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -2129,9 +1762,9 @@
         "wires": []
     },
     {
-        "id": "0f1419fe40a054a4",
+        "id": "8830ec26ba4c458e",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -2153,14 +1786,14 @@
         "y": 560,
         "wires": [
             [
-                "103caed91230c198"
+                "17eb32fcfeff3d51"
             ]
         ]
     },
     {
-        "id": "103caed91230c198",
+        "id": "17eb32fcfeff3d51",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "set payload",
         "func": "msg.payload = [{age: {$gt: 25}}];\nreturn msg;",
         "outputs": 1,
@@ -2172,14 +1805,14 @@
         "y": 560,
         "wires": [
             [
-                "3b5f6cbbc8585516"
+                "b699e978ebc717dc"
             ]
         ]
     },
     {
-        "id": "3b5f6cbbc8585516",
+        "id": "b699e978ebc717dc",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -2192,14 +1825,14 @@
         "y": 560,
         "wires": [
             [
-                "d69cf47b58e754d7"
+                "2d8bb2778e6c61c4"
             ]
         ]
     },
     {
-        "id": "d69cf47b58e754d7",
+        "id": "2d8bb2778e6c61c4",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -2213,9 +1846,9 @@
         "wires": []
     },
     {
-        "id": "d72c3423667d2fe7",
+        "id": "b846b486f919db25",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -2237,14 +1870,14 @@
         "y": 680,
         "wires": [
             [
-                "4fbc5c911d465894"
+                "c17e6c30b0ac693c"
             ]
         ]
     },
     {
-        "id": "4fbc5c911d465894",
+        "id": "c17e6c30b0ac693c",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "db",
         "collection": "",
@@ -2257,14 +1890,14 @@
         "y": 680,
         "wires": [
             [
-                "53eb06efe65bcfc4"
+                "53d3c8859dd5fd51"
             ]
         ]
     },
     {
-        "id": "53eb06efe65bcfc4",
+        "id": "53d3c8859dd5fd51",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "payload",
         "active": true,
         "tosidebar": true,
@@ -2279,9 +1912,9 @@
         "wires": []
     },
     {
-        "id": "4efb71ded2d8a294",
+        "id": "d5a01790676479c3",
         "type": "inject",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "props": [
             {
@@ -2303,14 +1936,14 @@
         "y": 620,
         "wires": [
             [
-                "f345242e576f8361"
+                "594dceb7d5012ef6"
             ]
         ]
     },
     {
-        "id": "f345242e576f8361",
+        "id": "594dceb7d5012ef6",
         "type": "function",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "distinct age",
         "func": "msg.payload = [\"age\"];\nreturn msg;",
         "outputs": 1,
@@ -2322,14 +1955,14 @@
         "y": 620,
         "wires": [
             [
-                "9960080cec50e212"
+                "2c60ce2538743838"
             ]
         ]
     },
     {
-        "id": "9960080cec50e212",
+        "id": "2c60ce2538743838",
         "type": "mongodb4",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "clientNode": "bcf62987d490788a",
         "mode": "collection",
         "collection": "persons",
@@ -2342,14 +1975,14 @@
         "y": 620,
         "wires": [
             [
-                "df8bfd9233fa703a"
+                "c47f435d6f6aa3e8"
             ]
         ]
     },
     {
-        "id": "df8bfd9233fa703a",
+        "id": "c47f435d6f6aa3e8",
         "type": "debug",
-        "z": "6b7a48cdf37ecce9",
+        "z": "3147ab54d30d11bb",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -2363,9 +1996,525 @@
         "wires": []
     },
     {
-        "id": "7c5c26ae371a301d",
+        "id": "fa5063a7ce043369",
+        "type": "rocketchat-out",
+        "z": "f7f9c56481cb8ead",
+        "name": "Send msg.payload.send",
+        "server": "22dba644aa7aea67",
+        "destination": "rooms",
+        "room": "payload.rid",
+        "roomType": "msg",
+        "avatarText": "",
+        "avatarTextType": "str",
+        "aliasText": "",
+        "aliasTextType": "str",
+        "emojiText": "",
+        "emojiTextType": "str",
+        "messageText": "payload.send",
+        "messageTextType": "msg",
+        "attachments": "[]",
+        "attachmentsType": "json",
+        "x": 1290,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6fd048c66f308817",
+        "type": "function",
+        "z": "f7f9c56481cb8ead",
+        "name": "function 3",
+        "func": "var regex = /^!rega\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var keys = Object.keys(context.global);\n    var locationKeys = keys.filter(function (key) {\n        return key.startsWith(zone+\"_name_\");\n    });\n\n    var result = locationKeys.map(function (key) {\n        var id = key.split(\"_\")[2];\n        var name = context.global[key];\n        var state = context.global[zone + \"_state_\" + id];\n        state = state.map(function (val) {\n            return parseInt(val);\n        });\n        return id +\": \"+name + \" - \" + state[id];\n    }).join(\"\\n\");\n\n    msg.payload.send = \"Localização: \" + zone + \"\\nEstações Disponiveis:\\n\" + result + \"\\nUtilizar !rega \"+zone+\" (estação) on/off\";\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 260,
+        "wires": [
+            [
+                "fa5063a7ce043369"
+            ]
+        ]
+    },
+    {
+        "id": "522cbd1b77982942",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "!rega",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "c36abec0b81a2728",
+                "12bf2ccdb48aaa50",
+                "637607be23fda4fd",
+                "d4d8746e2092fe3e",
+                "706686c9e6142870"
+            ]
+        ]
+    },
+    {
+        "id": "30e5eafd7b703ca0",
+        "type": "comment",
+        "z": "f7f9c56481cb8ead",
+        "name": "",
+        "info": "!rega - usage manual\n!rega localizaçoes - manda as localizaçoes disponiveis\n!rega pomar - mosta as estaçoes do pomar e estado.\n!rega pomar 1 on/off - liga/desliga a estaçao 1 do pomar\n",
+        "x": 300,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c36abec0b81a2728",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega (zona)",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s*(?!(lista\\b|\\b$))(\\S+)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "a5ca368e191c489f",
+                "c8add4a9ca4b3af7"
+            ]
+        ]
+    },
+    {
+        "id": "637607be23fda4fd",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega lista",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "!rega lista",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "8236fada222962ba"
+            ]
+        ]
+    },
+    {
+        "id": "12bf2ccdb48aaa50",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "!rega",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "eceeb630336b1dc9"
+            ]
+        ]
+    },
+    {
+        "id": "a5ca368e191c489f",
+        "type": "link out",
+        "z": "f7f9c56481cb8ead",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "f807f2578cc2c979"
+        ],
+        "x": 685,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c8add4a9ca4b3af7",
+        "type": "delay",
+        "z": "f7f9c56481cb8ead",
+        "name": "Delay for http request",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "6fd048c66f308817"
+            ]
+        ]
+    },
+    {
+        "id": "8236fada222962ba",
+        "type": "template",
+        "z": "f7f9c56481cb8ead",
+        "name": "",
+        "field": "payload.send",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Zonas disponiveis:\n- estufinha\n- pomar\nUsar: !rega ZONA para consultar os estados das mesmas.",
+        "output": "str",
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "fa5063a7ce043369"
+            ]
+        ]
+    },
+    {
+        "id": "d4d8746e2092fe3e",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega (zona) (estação) off",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(off)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "4822a90086b45c81"
+            ]
+        ]
+    },
+    {
+        "id": "4822a90086b45c81",
+        "type": "function",
+        "z": "f7f9c56481cb8ead",
+        "name": "function 4",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)$/;\n//var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on|off)(?:\\s+(\\d+))?$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    if (zone == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zone == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zone: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona:\" + zone +\"\\nEstação: \"+ estacao;\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zone + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 180,
+        "wires": [
+            [
+                "fa5063a7ce043369",
+                "957fa9d1eef591a6"
+            ]
+        ]
+    },
+    {
+        "id": "957fa9d1eef591a6",
+        "type": "http request",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega (zona) (estacao) off",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eceeb630336b1dc9",
+        "type": "template",
+        "z": "f7f9c56481cb8ead",
+        "name": "",
+        "field": "payload.send",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "!rega lista --> Consultar as zonas disponiveis.\n!rega (ZONA) --> Consultar os estados das estações de determinada zona.\n--- Ligar/Desligar Estação ---\n!rega (ZONA) (ESTAÇÃO) on (SEGUNDOS) --> Ligar determinada estação por X segundos.\n!rega (ZONA) (ESTAÇÃO) off --> Ligar determinada estação.",
+        "output": "str",
+        "x": 740,
+        "y": 380,
+        "wires": [
+            [
+                "fa5063a7ce043369"
+            ]
+        ]
+    },
+    {
+        "id": "706686c9e6142870",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega (zona) (estação) on (time)",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "08ffdbe76537eca4"
+            ]
+        ]
+    },
+    {
+        "id": "08ffdbe76537eca4",
+        "type": "function",
+        "z": "f7f9c56481cb8ead",
+        "name": "function 5",
+        "func": "var regex = /^!rega\\s+(\\S+)\\s+(\\d+)\\s+(on)\\s+(\\d+)$/;\nvar match = msg.payload.msg.match(regex);\n\nif (match[1]) {\n    var zone = match[1];\n    var estacao = match[2];\n    var estado = match[3];\n    var time = match[4];\n    if (zone == \"estufinha\") {\n        msg.httpip = \"192.168.8.131\"\n        msg.httpport = \"8083\"\n    }\n    if (zone == \"pomar\") {\n        msg.httpip = \"192.168.8.184\"\n        msg.httpport = \"8080\"\n    }\n    // Update the output message to include the \"zona: estação: on/off\" format\n    if (estado == \"on\") {\n        msg.payload.send = \"A ligar:\\nZona: \" + zone +\"\\nEstação: \"+ estacao+\"\\nDuração: \"+ time+\" segundos\";\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        msg.timeon = time\n        //http://os-ip/cm?pw=xxx&sid=0&en=1&t=360 \n        // sid: Station index(starting from 0)\n        // en: Enable bit(1: open the selected station; 0: close the selected station).\n        // t: Timer(in seconds).Acceptable range is 0 to 64800(18 hours).T\n    }\n    if (estado == \"off\") {\n        msg.payload.send = \"A desligar:\\nZona: \" + zone + \"\\nEstação: \" + estacao;\n        msg.payload.zone = zone\n        msg.estacaoid = estacao\n        //http://os-ip/cm?pw=xxx&sid=3&en=0\n    }\n\n\n}\n\n//estufinha 192.168.8.131:8083/\n//pomar 192.168.8.184:8080/\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 120,
+        "wires": [
+            [
+                "fa5063a7ce043369",
+                "f9dd0c52cac49b2e"
+            ]
+        ]
+    },
+    {
+        "id": "f9dd0c52cac49b2e",
+        "type": "http request",
+        "z": "f7f9c56481cb8ead",
+        "name": "!rega (zona) (estacao) on (time)",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://{{httpip}}:{{httpport}}/cm?pw=e4a89868b069802aa0cf67419f7dad38&sid={{estacaoid}}&en=1&t={{timeon}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1070,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "787ee8890943728d",
+        "type": "debug",
+        "z": "f7f9c56481cb8ead",
+        "name": "Rocket Chat msg recieved",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 120,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "7c604a337f4aada9",
+        "type": "rocketchat-in",
+        "z": "f7f9c56481cb8ead",
+        "name": "We receive a msg",
+        "server": "22dba644aa7aea67",
+        "origin": "user",
+        "room": "general",
+        "roomType": "str",
+        "roomData": "{}",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "522cbd1b77982942",
+                "787ee8890943728d",
+                "ed4da8c65c82178c",
+                "67d7430640061a69"
+            ]
+        ]
+    },
+    {
+        "id": "ed4da8c65c82178c",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!sesamo",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "!sesamo",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "!sesamo",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 540,
+        "wires": [
+            [
+                "8adc1ecbfd468ed1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8adc1ecbfd468ed1",
+        "type": "function",
+        "z": "f7f9c56481cb8ead",
+        "name": "Gate Mode",
+        "func": "var regex = /^!sesamo\\s*(\\S+)?$/;\nvar match = msg.payload.msg.match(regex);\nvar rocketJson\nif (match[1]) {\n    var mode = match[1];\n    msg.payload.send = \"A abrir o portão com o modo: \"+ mode;\n}\nmsg.payload.api = { \"mode\": mode, \"user\": msg.payload.u.username };\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "a6766bf6465f7df2",
+                "fa5063a7ce043369"
+            ]
+        ]
+    },
+    {
+        "id": "a6766bf6465f7df2",
+        "type": "link out",
+        "z": "f7f9c56481cb8ead",
+        "name": "/sessamo",
+        "mode": "link",
+        "links": [
+            "89dc6ce1ba3a9ed0"
+        ],
+        "x": 605,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "67d7430640061a69",
+        "type": "switch",
+        "z": "f7f9c56481cb8ead",
+        "name": "!sesamo",
+        "property": "payload.msg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "!sesamo",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "cd4cfea2f4dc6bab"
+            ]
+        ]
+    },
+    {
+        "id": "cd4cfea2f4dc6bab",
+        "type": "template",
+        "z": "f7f9c56481cb8ead",
+        "name": "",
+        "field": "payload.send",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Modos Disponiveis:\n- walk\nA abrir por: 2.5\nAberto por: 6\n- walk_fast\nA abrir por: 2.5\nAberto por: 3\n- bycar\nA abrir por: 22\nAberto por: 18\n- whellbarrow\nA abrir por: 5\nAberto por: 9",
+        "output": "str",
+        "x": 480,
+        "y": 620,
+        "wires": [
+            [
+                "fa5063a7ce043369"
+            ]
+        ]
+    },
+    {
+        "id": "db2de8bd2af5b0c6",
         "type": "http in",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "Post rega-control",
         "url": "/rega-control",
         "method": "post",
@@ -2375,14 +2524,14 @@
         "y": 160,
         "wires": [
             [
-                "b96ac1526eb1c700"
+                "6b65c78c755dc0f4"
             ]
         ]
     },
     {
-        "id": "b96ac1526eb1c700",
+        "id": "6b65c78c755dc0f4",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "Json Parse",
         "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    // Check if msg.payload is a string\n    try {\n        json = JSON.parse(msg.payload); // Try to parse the string as JSON\n    } catch (error) {\n        // If parsing fails, it's not a valid JSON\n        // You can handle the error here according to your requirements\n        // For example, you can set a flag, send an appropriate response,\n        // or log an error message\n        msg.error = error;\n        msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n        return msg; // Return the modified msg object\n    }\n} else {\n    json = msg.payload; // Assume msg.payload is already an object\n}\n\ntry {\n    // Check if the expected keys are present in the JSON object\n    if (!json.zone || !json.estacao || !json.action) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"Missing required keys in JSON\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n\n    // Add current date to the JSON object\n    json.date = new Date().toISOString();\n\n    // Set json.time to null if json.action is \"off\" and json.time is non-existent\n    if (json.action === \"off\") {\n        json.time = null;\n    }\n    if (json.action !== \"off\" && !json.time) {\n        msg.payload = \"You are outatime\";\n        msg.statusCode = 400; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    msg.payload = json; // Set msg.payload to the updated JSON object\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
         "outputs": 1,
@@ -2394,16 +2543,16 @@
         "y": 160,
         "wires": [
             [
-                "9bcd6f8c1f8e5752",
-                "2981bfb9c40ddd7f",
-                "a3f86c9e7cf49914"
+                "ba318565b18d2c25",
+                "258eec7ad3e02e4e",
+                "8c847cb94a75eeef"
             ]
         ]
     },
     {
-        "id": "9bcd6f8c1f8e5752",
+        "id": "ba318565b18d2c25",
         "type": "http response",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "statusCode": "",
         "headers": {},
@@ -2412,9 +2561,9 @@
         "wires": []
     },
     {
-        "id": "605f0af301f49be7",
+        "id": "11dd997271bd62c5",
         "type": "comment",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "info": "post com um json do estilo:\n{\"zona\":\"pomar\", \"estacao\":1, \"action\": \"off\", \"time\": null}\nadicionar tambem enviar o cookie do client para auth com a db",
         "x": 120,
@@ -2422,9 +2571,9 @@
         "wires": []
     },
     {
-        "id": "b21325fd77637ac0",
+        "id": "103d3c1a03548194",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "function 6",
         "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
         "outputs": 1,
@@ -2436,14 +2585,14 @@
         "y": 300,
         "wires": [
             [
-                "6c0dddeb62e3a6e1"
+                "89c081331d2c9844"
             ]
         ]
     },
     {
-        "id": "6c0dddeb62e3a6e1",
+        "id": "89c081331d2c9844",
         "type": "http request",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "!rega (zona) (estacao) off",
         "method": "GET",
         "ret": "obj",
@@ -2463,9 +2612,9 @@
         ]
     },
     {
-        "id": "069a4c52dbbc7b99",
+        "id": "7e23416f20c1cf74",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "function 7",
         "func": "if (msg.payload.zone == \"estufinha\") {\n    msg.httpip = \"192.168.8.131\"\n    msg.httpport = \"8083\"\n}\nif (msg.payload.zone == \"pomar\") {\n    msg.httpip = \"192.168.8.184\"\n    msg.httpport = \"8080\"\n}\n\nreturn msg;",
         "outputs": 1,
@@ -2477,14 +2626,14 @@
         "y": 240,
         "wires": [
             [
-                "3c486cb3c53b1670"
+                "48f74b9e9fe4d731"
             ]
         ]
     },
     {
-        "id": "3c486cb3c53b1670",
+        "id": "48f74b9e9fe4d731",
         "type": "http request",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "!rega (zona) (estacao) on (time)",
         "method": "GET",
         "ret": "obj",
@@ -2504,9 +2653,9 @@
         ]
     },
     {
-        "id": "2981bfb9c40ddd7f",
+        "id": "258eec7ad3e02e4e",
         "type": "switch",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "action: on",
         "property": "payload.action",
         "propertyType": "msg",
@@ -2524,14 +2673,14 @@
         "y": 240,
         "wires": [
             [
-                "069a4c52dbbc7b99"
+                "7e23416f20c1cf74"
             ]
         ]
     },
     {
-        "id": "a3f86c9e7cf49914",
+        "id": "8c847cb94a75eeef",
         "type": "switch",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "action: off",
         "property": "payload.action",
         "propertyType": "msg",
@@ -2549,14 +2698,14 @@
         "y": 300,
         "wires": [
             [
-                "b21325fd77637ac0"
+                "103d3c1a03548194"
             ]
         ]
     },
     {
-        "id": "a7a9f2b1adfc9c02",
+        "id": "49558cc0996ad8cd",
         "type": "http in",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "Post sensor-data",
         "url": "/sensor-data",
         "method": "post",
@@ -2566,14 +2715,14 @@
         "y": 500,
         "wires": [
             [
-                "fe47cb2d536347cd"
+                "ecc477833abdb64e"
             ]
         ]
     },
     {
-        "id": "fe47cb2d536347cd",
+        "id": "ecc477833abdb64e",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "Json Parse",
         "func": "var json;\n\nif (typeof msg.payload === 'string') {\n    try {\n        json = JSON.parse(msg.payload);\n    } catch (error) {\n        msg.error = error;\n        msg.statusCode = 418;\n        return msg;\n    }\n} else {\n    json = msg.payload;\n}\n\ntry {\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n\n    json.date = new Date().toISOString();\n    if (!json.collection) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"Missing collection in JSON\";\n        msg.statusCode = 418; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    msg.collection = json.collection;\n    delete json.collection;\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\n\nreturn msg;\n",
         "outputs": 1,
@@ -2585,16 +2734,16 @@
         "y": 500,
         "wires": [
             [
-                "aa825195ef7a4e8a",
-                "247ed4527e4e9f2d",
-                "82c41b3301bfc60d"
+                "fc5ea472625c7966",
+                "31fa86045ebd7926",
+                "1f04e9a26096b044"
             ]
         ]
     },
     {
-        "id": "247ed4527e4e9f2d",
+        "id": "31fa86045ebd7926",
         "type": "http response",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "statusCode": "",
         "headers": {},
@@ -2603,9 +2752,9 @@
         "wires": []
     },
     {
-        "id": "aa825195ef7a4e8a",
+        "id": "fc5ea472625c7966",
         "type": "mongodb4",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "clientNode": "9362c1adaa612ce4",
         "mode": "collection",
         "collection": "",
@@ -2618,14 +2767,14 @@
         "y": 500,
         "wires": [
             [
-                "82c41b3301bfc60d"
+                "1f04e9a26096b044"
             ]
         ]
     },
     {
-        "id": "82c41b3301bfc60d",
+        "id": "1f04e9a26096b044",
         "type": "debug",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -2639,9 +2788,9 @@
         "wires": []
     },
     {
-        "id": "2f515e04a0ed4520",
+        "id": "419d1425562520c9",
         "type": "comment",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "info": "The sensor needs to send the values in json indication the collection\n{\"ph\":7.4,\"value2\": 743,\"collection\":\"this\"}",
         "x": 140,
@@ -2649,9 +2798,9 @@
         "wires": []
     },
     {
-        "id": "c746442c65f6a2c5",
+        "id": "ad0f973fc6f8ea8d",
         "type": "http in",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "GET rega-state",
         "url": "/rega-state/:zone",
         "method": "get",
@@ -2661,14 +2810,14 @@
         "y": 820,
         "wires": [
             [
-                "e5ec5fd5.c5a36"
+                "8ac7bac671eefb93"
             ]
         ]
     },
     {
-        "id": "5a233e314554a7d3",
+        "id": "1ac5c9be290a7615",
         "type": "http response",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "statusCode": "",
         "headers": {},
@@ -2677,9 +2826,9 @@
         "wires": []
     },
     {
-        "id": "5e8bd63af582682e",
+        "id": "8d5a3dbd84c543ea",
         "type": "http request",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "States OpenSprinkler Estufinha",
         "method": "GET",
         "ret": "obj",
@@ -2696,14 +2845,14 @@
         "y": 900,
         "wires": [
             [
-                "7d924b771197759c"
+                "a9dee1de821ada2f"
             ]
         ]
     },
     {
-        "id": "8877cd12c355565f",
+        "id": "46eb70a706111a71",
         "type": "http request",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "States OpenSprinkler Pomar",
         "method": "GET",
         "ret": "obj",
@@ -2720,14 +2869,14 @@
         "y": 740,
         "wires": [
             [
-                "7d924b771197759c"
+                "a9dee1de821ada2f"
             ]
         ]
     },
     {
-        "id": "7d924b771197759c",
+        "id": "a9dee1de821ada2f",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "return json",
         "func": "let snstates = msg.payload.sn;\n\nlet stationStates = [];\nfor (let i = 0; i < snstates.length; i++) {\n    let varName = msg.zone + \"_state_\" + i;\n    let stationState = snstates[i];\n    context.global[varName] = stationStates;\n    stationStates.push({ name: varName, state: stationState });\n}\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\nmsg.payload = JSON.stringify(stationStates);\n\nreturn msg;\n",
         "outputs": 1,
@@ -2739,15 +2888,15 @@
         "y": 800,
         "wires": [
             [
-                "8c20a15aeec9d8f6",
-                "5a233e314554a7d3"
+                "63a13c740da2b2c3",
+                "1ac5c9be290a7615"
             ]
         ]
     },
     {
-        "id": "7a3a2e74a58c6ca8",
+        "id": "2ba185f145bd88d3",
         "type": "switch",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "msg.zone = pomar",
         "property": "zone",
         "propertyType": "msg",
@@ -2765,14 +2914,14 @@
         "y": 740,
         "wires": [
             [
-                "8877cd12c355565f"
+                "46eb70a706111a71"
             ]
         ]
     },
     {
-        "id": "8717864bd22cc901",
+        "id": "b0253c2f372a8479",
         "type": "switch",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "msg.zone = estufinha",
         "property": "zone",
         "propertyType": "msg",
@@ -2790,14 +2939,14 @@
         "y": 900,
         "wires": [
             [
-                "5e8bd63af582682e"
+                "8d5a3dbd84c543ea"
             ]
         ]
     },
     {
-        "id": "8c20a15aeec9d8f6",
+        "id": "63a13c740da2b2c3",
         "type": "debug",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -2811,9 +2960,9 @@
         "wires": []
     },
     {
-        "id": "e5ec5fd5.c5a36",
+        "id": "8ac7bac671eefb93",
         "type": "function",
-        "z": "1b3b19d619ca70e2",
+        "z": "33d8cc1cde209e15",
         "name": "",
         "func": "let zone = msg.req.params.zone;\nmsg.zone = zone;\n\n\nreturn msg;",
         "outputs": 1,
@@ -2825,9 +2974,219 @@
         "y": 820,
         "wires": [
             [
-                "7a3a2e74a58c6ca8",
-                "8717864bd22cc901"
+                "2ba185f145bd88d3",
+                "b0253c2f372a8479"
             ]
         ]
+    },
+    {
+        "id": "85f18b1f9f9b0885",
+        "type": "http in",
+        "z": "33d8cc1cde209e15",
+        "name": "POST /sesamo",
+        "url": "/sesamo",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 1060,
+        "wires": [
+            [
+                "5332e61b1b50872c"
+            ]
+        ]
+    },
+    {
+        "id": "8dad0c8133cfa364",
+        "type": "http response",
+        "z": "33d8cc1cde209e15",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 410,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "5332e61b1b50872c",
+        "type": "function",
+        "z": "33d8cc1cde209e15",
+        "name": "",
+        "func": "var json;\nif (msg.payload.api){\n    msg.payload = msg.payload.api;\n}\nif (typeof msg.payload === 'string') {\n    try {\n        json = JSON.parse(msg.payload);\n    } catch (error) {\n        msg.error = error;\n        msg.statusCode = 418;\n        return msg;\n    }\n} else {\n    json = msg.payload;\n}\n\ntry {\n    for (var key in json) {\n        if (json.hasOwnProperty(key)) {\n            msg.payload = msg.payload || {}; // Initialize msg.payload as an object if it's not already\n            msg.payload[key] = json[key]; // Save the value with the respective key in msg.payload\n        }\n    }\n\n    json.date = new Date().toISOString();\n    if (!(json.mode) || !(json.user)) {\n        // If any of the expected keys are missing, handle the error\n        // You can set an appropriate response in msg.payload and set an appropriate status code\n        // For example:\n        msg.payload = \"You need to specify the mode and the user\";\n        msg.statusCode = 418; // Set msg.statusCode to 400 (Bad Request) for error case\n        return msg; // Return the modified msg object\n    }\n    if (json.mode === 'walk'){\n        msg.t1 = 2.5; // time motor running\n        msg.t2 = 6; // time until closing\n    } else if (json.mode === 'walk_fast'){\n        msg.t1 = 2.5; // time motor running\n        msg.t2 = 3; // time until closing\n    } else if (json.mode === 'bycar') {\n        msg.t1 = 22; // time motor running\n        msg.t2 = 18; // time until closing\n    } else if (json.mode === 'whellbarrow') {\n        msg.t1 = 5; // time motor running\n        msg.t2 = 9; // time until closing\n    }\n    msg.collection = \"sesamo\";\n    delete json.collection;\n    msg.statusCode = 200; // Set msg.statusCode to 200 for success case\n} catch (error) {\n    msg.error = error;\n    msg.statusCode = 418; // Set msg.statusCode to 418 (I'm a teapot) for error case\n}\nmsg.sendssh = \"ssh raspportao 'python3 /home/pi/sesamo.py \" + msg.t1 + \" \" + msg.t2+\"'\";\n//msg.sendssh = \"ssh raspportao 'echo aa > /home/pi/this'\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1060,
+        "wires": [
+            [
+                "8dad0c8133cfa364",
+                "5705fdc7027c13ce",
+                "ac0f341500f81192"
+            ]
+        ]
+    },
+    {
+        "id": "5705fdc7027c13ce",
+        "type": "change",
+        "z": "33d8cc1cde209e15",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sendssh",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1160,
+        "wires": [
+            [
+                "e3f22e369ba78d7e"
+            ]
+        ]
+    },
+    {
+        "id": "7838bc61dc7adbb9",
+        "type": "debug",
+        "z": "33d8cc1cde209e15",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "e3f22e369ba78d7e",
+        "type": "ssh-v3",
+        "z": "33d8cc1cde209e15",
+        "name": "Debian",
+        "conf": "d489d63adf6c1ab5",
+        "debug": false,
+        "x": 620,
+        "y": 1120,
+        "wires": [
+            [
+                "7838bc61dc7adbb9"
+            ]
+        ]
+    },
+    {
+        "id": "89dc6ce1ba3a9ed0",
+        "type": "link in",
+        "z": "33d8cc1cde209e15",
+        "name": "/sesamo",
+        "links": [
+            "a6766bf6465f7df2"
+        ],
+        "x": 175,
+        "y": 980,
+        "wires": [
+            [
+                "5332e61b1b50872c"
+            ]
+        ]
+    },
+    {
+        "id": "ac0f341500f81192",
+        "type": "mongodb4",
+        "z": "33d8cc1cde209e15",
+        "clientNode": "58099b05a48c465b",
+        "mode": "collection",
+        "collection": "",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "",
+        "handleDocId": false,
+        "name": "",
+        "x": 560,
+        "y": 1040,
+        "wires": [
+            [
+                "7838bc61dc7adbb9"
+            ]
+        ]
+    },
+    {
+        "id": "3c562ba907df13dc",
+        "type": "http in",
+        "z": "33d8cc1cde209e15",
+        "name": "",
+        "url": "/sesamo-log",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 1280,
+        "wires": [
+            [
+                "e1d30bbac3a0e53b"
+            ]
+        ]
+    },
+    {
+        "id": "79a3dce739fb254c",
+        "type": "mongodb4",
+        "z": "33d8cc1cde209e15",
+        "clientNode": "58099b05a48c465b",
+        "mode": "collection",
+        "collection": "sesamo",
+        "operation": "find",
+        "output": "toArray",
+        "maxTimeMS": "",
+        "handleDocId": false,
+        "name": "find.toArray",
+        "x": 470,
+        "y": 1280,
+        "wires": [
+            [
+                "1ab1c78c0bc54305"
+            ]
+        ]
+    },
+    {
+        "id": "e1d30bbac3a0e53b",
+        "type": "function",
+        "z": "33d8cc1cde209e15",
+        "name": "set payload",
+        "func": "msg.payload = [{}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 1280,
+        "wires": [
+            [
+                "79a3dce739fb254c"
+            ]
+        ]
+    },
+    {
+        "id": "1ab1c78c0bc54305",
+        "type": "http response",
+        "z": "33d8cc1cde209e15",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 660,
+        "y": 1280,
+        "wires": []
     }
 ]
